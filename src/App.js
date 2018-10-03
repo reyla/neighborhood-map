@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios'
 
 class App extends Component {
 
   componentDidMount() {
+    this.getTrails()
     this.renderMap()
   }
 
@@ -12,10 +14,32 @@ class App extends Component {
     window.initMap = this.initMap
   }
 
+  getTrails = () => {
+    const endPoint = "https://www.hikingproject.com/data/get-trails?"
+    const parameters = {
+      key: '7127990-5024e929ecbd22e7834e19ea1890f393',
+      lat: '35.909967',
+      lon: '-79.075229',
+      maxDistance: 30,
+      maxResults: 10,
+      sort: 'quality',  /* quality or distance */
+      minLength: 0,
+      minStars: 0
+    }
+
+    axios.get(endPoint + new URLSearchParams(parameters))
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log("Error: " + error)
+      })
+  }
+
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8
+      center: {lat: 35.909967, lng: -79.075229},
+      zoom: 13
     })
   }
 
