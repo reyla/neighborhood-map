@@ -4,6 +4,10 @@ import axios from 'axios'
 
 class App extends Component {
 
+  state = {
+    trails: []
+  }
+
   componentDidMount() {
     this.getTrails()
     this.renderMap()
@@ -29,7 +33,10 @@ class App extends Component {
 
     axios.get(endPoint + new URLSearchParams(parameters))
       .then(response => {
-        console.log(response)
+        this.setState({
+          trails: response.data.trails
+        })
+        console.log(response.data.trails)
       })
       .catch(error => {
         console.log("Error: " + error)
