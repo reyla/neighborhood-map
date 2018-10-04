@@ -36,10 +36,9 @@ class App extends Component {
         this.setState({
           trails: response.data.trails
         })
-        console.log(response.data.trails)
       })
       .catch(error => {
-        console.log("Error: " + error)
+        console.log("Error fetching trails." + error)
       })
   }
 
