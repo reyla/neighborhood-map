@@ -42,18 +42,38 @@ class App extends Component {
   }
 
   initMap = () => {
+    // create a map
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 35.909967, lng: -79.075229},
       zoom: 9
     })
 
+    // create a generic infowindow
+    var infowindow = new window.google.maps.InfoWindow()
+
+    // display dynamic markers
     this.state.trails.map(thisTrail => {
-      new window.google.maps.Marker({
+
+      // create content for infowindow
+      var contentString = `${thisTrail.name}`
+
+      // create marker
+      var marker = new window.google.maps.Marker({
         position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
-        map: map
+        map: map,
+        title: thisTrail.name
+      })
+
+      // click on marker
+      marker.addListener('click', function() {
+        
+        // change the content of infowindow
+        infowindow.setContent(contentString)
+        
+        // open infowindow
+        infowindow.open(map, marker);
       })
     })
-    
   }
 
   render() {
