@@ -25,12 +25,11 @@ class App extends Component {
       lon: '-79.075229',
       maxDistance: 80,
       maxResults: 10,
-      sort: 'quality',  /* quality or distance */
-      minLength: 0,
-      minStars: 0
+      sort: 'distance',  /* quality or distance */
     }
 
     axios.get(endPoint + new URLSearchParams(parameters))
+      // first get the array of trails before rendering the map
       .then(response => {
         this.setState({
           trails: response.data.trails
@@ -45,11 +44,11 @@ class App extends Component {
     // create a map
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 35.909967, lng: -79.075229},
-      zoom: 9
+      zoom: 10
     })
 
     // create a generic infowindow
-    var infowindow = new window.google.maps.InfoWindow()
+    var infowindow = new window.google.maps.InfoWindow({maxWidth: 200})
 
     // display dynamic markers
     this.state.trails.map(thisTrail => {
@@ -73,6 +72,8 @@ class App extends Component {
         // open infowindow
         infowindow.open(map, marker);
       })
+
+      return thisTrail
     })
   }
 
@@ -86,7 +87,7 @@ class App extends Component {
 }
 
 /*
-This function creates script html that loads the google map
+This function add script html to index file to load the google map
 */
 function loadScript(url) {
   // find the first script tag in index.html
