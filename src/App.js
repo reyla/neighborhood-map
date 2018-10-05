@@ -10,7 +10,6 @@ class App extends Component {
 
   componentDidMount() {
     this.getTrails()
-    this.renderMap()
   }
 
   renderMap = () => {
@@ -24,7 +23,7 @@ class App extends Component {
       key: '7127990-5024e929ecbd22e7834e19ea1890f393',
       lat: '35.909967',
       lon: '-79.075229',
-      maxDistance: 30,
+      maxDistance: 80,
       maxResults: 10,
       sort: 'quality',  /* quality or distance */
       minLength: 0,
@@ -35,7 +34,7 @@ class App extends Component {
       .then(response => {
         this.setState({
           trails: response.data.trails
-        })
+        }, this.renderMap())
       })
       .catch(error => {
         console.log("Error fetching trails." + error)
@@ -45,8 +44,16 @@ class App extends Component {
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 35.909967, lng: -79.075229},
-      zoom: 13
+      zoom: 9
     })
+
+    this.state.trails.map(thisTrail => {
+      new window.google.maps.Marker({
+        position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
+        map: map
+      })
+    })
+    
   }
 
   render() {
@@ -54,10 +61,13 @@ class App extends Component {
       <main>
         <div id="map"></div>
       </main>
-    );
+    )
   }
 }
 
+/*
+This function creates script html that loads the google map
+*/
 function loadScript(url) {
   // find the first script tag in index.html
   var index = window.document.getElementsByTagName('script')[0]
