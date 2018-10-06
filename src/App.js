@@ -48,13 +48,26 @@ class App extends Component {
     })
 
     // create a generic infowindow
-    var infowindow = new window.google.maps.InfoWindow({maxWidth: 200})
+    var infowindow = new window.google.maps.InfoWindow({maxWidth: 300})
 
     // display dynamic markers
     this.state.trails.map(thisTrail => {
 
       // create content for infowindow
-      var contentString = `${thisTrail.name}`
+      var image = thisTrail.imgSmall
+      var contentString = '<div id="content">' + 
+        '<img src="' + image + '"/>' + 
+        '<h3 id="trailName">' + 
+        `${thisTrail.name}` +
+        '</h3>' +
+        '<p id="trailInfo">Length: ' +
+        `${thisTrail.length}` +
+        ' miles<br/> Difficulty: ' +
+        `${thisTrail.difficulty}` +
+        '<br/>' + 
+        `${thisTrail.summary}` +
+        '</p>' + 
+        '</div>'
 
       // create marker
       var marker = new window.google.maps.Marker({
