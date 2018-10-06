@@ -21,3 +21,12 @@ All npm dependencies are listed in [package.json](package.json).
 Google Maps api integration was guided by videos...
 
 HikingProject.com api
+
+
+Your Rating
+  Easy: walking with no obstacles and low grades
+  Easy/Intermediate
+  Intermediate: 10% grade, small rocks and roots, easy scrambling
+  Intermediate/Difficult
+  Difficult: 15% grade, large obstacles, possible scrambling or climbing
+  Extremely Difficult: 20% grade, 15+" obstacles, many harder sections
