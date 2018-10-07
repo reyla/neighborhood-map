@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Info from './Info';
 import './App.css';
-import axios from 'axios'
+import axios from 'axios';
 
 class App extends Component {
 
@@ -94,6 +95,10 @@ class App extends Component {
     return (
       <main>
         <div id="map"></div>
+        <button id="info">hamburger</button>
+        <div id="info"><Info
+                        trails={this.state.trails} />
+        </div>
       </main>
     )
   }
@@ -114,5 +119,24 @@ function loadScript(url) {
   index.parentNode.insertBefore(script, index)
 }
 
+/* Opens the sidebar (when the ? icon is clicked)
+ 
+function openInfo() {
+  info.style.width = "100%";
+}
+
+/* Closes the sidebar (when the X icon is clicked)
+
+function closeInfo() {
+  info.style.width = "0";
+}
+
+// this listens for click on the help ? icon
+help.addEventListener('click', openNav);
+
+// this listens for click on the X icon
+closeHelp.addEventListener('click', closeNav);
+
+*/
 
 export default App;
