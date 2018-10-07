@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Info from './Info';
 import './App.css';
-import back from './img/back.svg';
+import staticmap from './img/staticmap.png';
 import axios from 'axios';
 
 class App extends Component {
 
   state = {
     trails: [],
-    isSidebarOpen: false
+    isSidebarOpen: false,
+    online: true
   }
 
   handleMenuClick() {
@@ -31,7 +32,7 @@ class App extends Component {
       lat: '35.909967',
       lon: '-79.075229',
       maxDistance: 80,
-      maxResults: 10,
+      maxResults: 9,
       sort: 'distance',  /* quality or distance */
     }
 
@@ -44,6 +45,9 @@ class App extends Component {
       })
       .catch(error => {
         console.log("Error fetching trails." + error)
+        this.setState({ 
+          online: false 
+        })
       })
   }
 
@@ -94,8 +98,11 @@ class App extends Component {
   render() {
     return (
       <main>
-        <div id="map"></div>
-        <button id="sidebarButton" autofocus="True" type="button" onClick={this.handleMenuClick.bind(this)}>List View</button>
+        <div id="map">
+          <div id="offline" style={{ visibility: this.state.online ? "hidden" : "visible" }}>You are offline.</div>
+          <img src={staticmap} />
+        </div>
+        <button id="sidebarButton" autoFocus="True" type="button" onClick={this.handleMenuClick.bind(this)}>List View</button>
         <div id="sidebar" style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}>
           <button id="backButton" type="button" onClick={this.handleMenuClick.bind(this)}>Map View</button>
           <Info 

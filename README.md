@@ -10,6 +10,8 @@ In your project directory, install all project dependencies with `npm install`.
 
 Start the development server with `npm start`. It should automatically navigate your web browser to http://localhost:3000
 
+The service worker will not work unless it is a production build.
+
 ## Dependencies
 
 Font provided by Google Fonts https://fonts.googleapis.com/css?family=Roboto
