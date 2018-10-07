@@ -7,7 +7,7 @@ class Trail extends React.Component {
         return (
         
             <div id="trail-item">         
-            ${this.props.trail.name}
+                {this.props.trail.name}
             </div>
             )
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Info from './Info';
 import './App.css';
-import menu from './img/menu.svg';
 import back from './img/back.svg';
 import axios from 'axios';
 
@@ -58,9 +57,8 @@ class App extends Component {
     // create a generic infowindow
     var infowindow = new window.google.maps.InfoWindow({maxWidth: 300})
 
-    // display dynamic markers
+    // Loop over each trail in state array to load dynamic markers
     this.state.trails.map(thisTrail => {
-
       // create content for infowindow
       var image = thisTrail.imgSmall
       var contentString = '<div id="content">' + 
@@ -76,24 +74,19 @@ class App extends Component {
         `${thisTrail.summary}` +
         '</p>' + 
         '</div>'
-
       // create marker
       var marker = new window.google.maps.Marker({
         position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
         map: map,
         title: thisTrail.name
       })
-
       // click on marker
       marker.addListener('click', function() {
-        
         // change the content of infowindow
         infowindow.setContent(contentString)
-        
         // open infowindow
         infowindow.open(map, marker);
       })
-
       return thisTrail
     })
   }
@@ -102,9 +95,9 @@ class App extends Component {
     return (
       <main>
         <div id="map"></div>
-        <img src={menu} id="menu-icon" alt="Info" onClick={this.handleMenuClick.bind(this)}/>
+        <button id="sidebarButton" autofocus="True" type="button" onClick={this.handleMenuClick.bind(this)}>List View</button>
         <div id="sidebar" style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}>
-          <img src={back} id="back-icon" alt="Back" onClick={this.handleMenuClick.bind(this)} />
+          <button id="backButton" type="button" onClick={this.handleMenuClick.bind(this)}>Map View</button>
           <Info 
             trails={this.state.trails}
             isSidebarOpen={this.state.isSidebarOpen}
@@ -116,7 +109,7 @@ class App extends Component {
 }
 
 /*
-This function add script html to index file to load the google map
+This function adds script html to index file to load the google map
 */
 function loadScript(url) {
   // find the first script tag in index.html

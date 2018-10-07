@@ -13,33 +13,57 @@ html, body {
  * Styles for the Sidebar
  */
 
- .sidebar-icon {
+ #sidebarButton {
     position: absolute;
     top: 60px;
-    right: 0px;
+    left: 0px;
+    margin: 0 .5em;
+    padding: .5em;
+    background-color: #1a8033;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    border: 1px solid #0c2448;
+ }
+
+ #sidebarButton:hover,
+ #sidebarButton:focus {
     cursor: pointer;
-    margin: 0 1em;
+    background-color: #0c2448;
+    color: #f7eaf3;
  }
 
  #sidebar {
   height: 100%;
-  width: 0;
+  width: 100%;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: /*#0c2448; */ rgba(12, 26, 72, .8);
+  background-color: #1a8033;
   color: #f7eaf3;
   overflow-x: hidden;
-  padding-top: 60px;
-  border-radius: 8px;
-  transition: 0.6s; /* 0.5 second transition effect to slide in the sidebar */
+  padding: 0;
+  transition: 0.6s; /* transition effect to slide in the sidebar */
 }
 
-.back-icon {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  margin-left: 50px;
+h3 {
+  padding-left: 20px;
+}
+
+#backButton {
+  margin: 1em;
+  padding: .5em;
+  background-color: #b3b3b3;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  border: 1px solid #0c2448;
+}
+
+#backButton:hover,
+#backButton:focus {
   cursor: pointer;
+  background-color: #0c2448;
+  color: #f7eaf3;
 }

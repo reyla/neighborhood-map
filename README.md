@@ -22,7 +22,6 @@ Google Maps api integration was guided by videos...
 
 HikingProject.com api
 
-
 Your Rating
   Easy: walking with no obstacles and low grades
   Easy/Intermediate
