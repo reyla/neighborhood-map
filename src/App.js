@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import Info from './Info';
 import './App.css';
-import sidebar from './img/menu.svg';
+import menu from './img/menu.svg';
 import axios from 'axios';
 
 class App extends Component {
 
   state = {
-    trails: []
+    trails: [],
+    isSidebarOpen: false
+  }
+
+  handleMenuClick() {
+    this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
   }
 
   componentDidMount() {
@@ -96,9 +101,11 @@ class App extends Component {
     return (
       <main>
         <div id="map"></div>
-        <img src={sidebar} className="sidebar-icon" alt="Info" />
-        <div id="sidebar"><Info
-                        trails={this.state.trails} />
+        <img src={menu} id="menu-icon" alt="Info" onClick={this.handleMenuClick.bind(this)}/>
+        <div id="sidebar" style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}>
+          <Info 
+            trails={this.state.trails}
+            onHandleMenuClick={this.handleMenuClick.bind(this)} />
         </div>
       </main>
     )
@@ -120,24 +127,5 @@ function loadScript(url) {
   index.parentNode.insertBefore(script, index)
 }
 
-/* Opens the sidebar (when the ? icon is clicked)
- 
-function openInfo() {
-  info.style.width = "100%";
-}
-
-/* Closes the sidebar (when the X icon is clicked)
-
-function closeInfo() {
-  info.style.width = "0";
-}
-
-// this listens for click on the help ? icon
-help.addEventListener('click', openNav);
-
-// this listens for click on the X icon
-closeHelp.addEventListener('click', closeNav);
-
-*/
 
 export default App;
