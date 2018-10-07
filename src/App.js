@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Info from './Info';
 import './App.css';
 import menu from './img/menu.svg';
+import back from './img/back.svg';
 import axios from 'axios';
 
 class App extends Component {
@@ -103,9 +104,11 @@ class App extends Component {
         <div id="map"></div>
         <img src={menu} id="menu-icon" alt="Info" onClick={this.handleMenuClick.bind(this)}/>
         <div id="sidebar" style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}>
+          <img src={back} id="back-icon" alt="Back" onClick={this.handleMenuClick.bind(this)} />
           <Info 
             trails={this.state.trails}
-            onHandleMenuClick={this.handleMenuClick.bind(this)} />
+            isSidebarOpen={this.state.isSidebarOpen}
+          />
         </div>
       </main>
     )
