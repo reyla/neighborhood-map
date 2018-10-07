@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Info from './Info';
 import './App.css';
+import sidebar from './img/menu.svg';
 import axios from 'axios';
 
 class App extends Component {
@@ -95,8 +96,8 @@ class App extends Component {
     return (
       <main>
         <div id="map"></div>
-        <button id="info">hamburger</button>
-        <div id="info"><Info
+        <img src={sidebar} className="sidebar-icon" alt="Info" />
+        <div id="sidebar"><Info
                         trails={this.state.trails} />
         </div>
       </main>
