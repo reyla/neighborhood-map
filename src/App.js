@@ -9,7 +9,8 @@ class App extends Component {
   state = {
     trails: [],
     isSidebarOpen: false,
-    online: true
+    online: true,
+    maxLength: 'allresults'
   }
 
   handleMenuClick() {
@@ -31,8 +32,8 @@ class App extends Component {
       key: '7127990-5024e929ecbd22e7834e19ea1890f393',
       lat: '35.909967',
       lon: '-79.075229',
-      maxDistance: 80,
-      maxResults: 9,
+      maxDistance: 100,
+      maxResults: 20,
       sort: 'distance',  /* quality or distance */
     }
 
@@ -76,8 +77,9 @@ class App extends Component {
         `${thisTrail.difficulty}` +
         '</p><p id="trailSummary">' + 
         `${thisTrail.summary}` +
-        '</p>' + 
-        '</div>'
+        '</p> <a href="' +
+        `${thisTrail.url}` +
+        '">Learn more on HikingProject.com</a></div>'
       // create marker      
       var marker = new window.google.maps.Marker({
         position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
@@ -101,7 +103,7 @@ class App extends Component {
       <main>
         <div id="map">
           <div id="offline" style={{ visibility: this.state.online ? "hidden" : "visible" }}>You are offline.</div>
-          <img src={staticmap} />
+          <img src={staticmap} alt="Static Map of Hiking Trails"/>
         </div>
         <button id="sidebarButton" autoFocus="True" type="button" onClick={this.handleMenuClick.bind(this)}>List View</button>
         <div id="sidebar" style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}>
@@ -110,6 +112,7 @@ class App extends Component {
             trails={this.state.trails}
             isSidebarOpen={this.state.isSidebarOpen}
             isOnline={this.state.online}
+            maxLength={this.props.maxLength}
           />
         </div>
       </main>
