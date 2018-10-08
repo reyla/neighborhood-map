@@ -62,10 +62,10 @@ class App extends Component {
     var infowindow = new window.google.maps.InfoWindow({maxWidth: 300})
 
     // Loop over each trail in state array to load dynamic markers
-    this.state.trails.map(thisTrail => {
+    this.state.trails.map((thisTrail) => {
       // create content for infowindow
       var image = thisTrail.imgSmall
-      var contentString = '<div id="content">' + 
+      var contentString = '<div id="popup">' + 
         '<img src="' + image + '"/>' + 
         '<h3 id="trailName">' + 
         `${thisTrail.name}` +
@@ -74,11 +74,11 @@ class App extends Component {
         `${thisTrail.length}` +
         ' miles<br/> Difficulty: ' +
         `${thisTrail.difficulty}` +
-        '<br/>' + 
+        '</p><p id="trailSummary">' + 
         `${thisTrail.summary}` +
         '</p>' + 
         '</div>'
-      // create marker
+      // create marker      
       var marker = new window.google.maps.Marker({
         position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
         map: map,
@@ -91,6 +91,7 @@ class App extends Component {
         // open infowindow
         infowindow.open(map, marker);
       })
+      
       return thisTrail
     })
   }
@@ -108,6 +109,7 @@ class App extends Component {
           <Info 
             trails={this.state.trails}
             isSidebarOpen={this.state.isSidebarOpen}
+            isOnline={this.state.online}
           />
         </div>
       </main>

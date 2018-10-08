@@ -9,13 +9,27 @@ html, body {
   height: 100vh;
 }
 
+
+/* 
+ * Styles for InfoWindow 
+ */
+#popup {
+  margin: 0 auto;
+}
+
+#popup img {
+  display: block;
+  margin: auto;
+}
+
+
 /*
  * Styles for the Sidebar
  */
 
  #sidebarButton {
     position: absolute;
-    top: 60px;
+    top: 70px;
     left: 0px;
     margin: 0 .5em;
     padding: .5em;
@@ -23,7 +37,9 @@ html, body {
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 400;
-    border: 1px solid #0c2448;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
+    box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
  }
 
  #sidebarButton:hover,
@@ -43,12 +59,37 @@ html, body {
   background-color: #1a8033;
   color: #f7eaf3;
   overflow-x: hidden;
-  padding: 0;
+  padding: 20px;
   transition: 0.6s; /* transition effect to slide in the sidebar */
 }
 
-#sidebar h3 {
-  padding-left: 20px;
+
+#trail-list-dynamic {
+  margin: 0;
+  padding: 20px;
+}
+
+#trail-list-dynamic li {
+  border: 2px solid #ccc;
+  font-family: Arial, sans-serif;
+  margin: 15px 0;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.trail-item {
+  width: 100%;
+  display: flex;
+}
+
+.trail-img {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.trail-details {
+  width: 50%;
 }
 
 #backButton {

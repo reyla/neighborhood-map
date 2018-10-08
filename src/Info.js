@@ -9,7 +9,7 @@ class Info extends React.Component {
         return (
             <div id="content">
                     <h3>Trail Results</h3>
-                    <ol>
+                    <ol id="trail-list-dynamic">
                     {this.props.trails.map((trail) => (                               
                         <li key={trail.id}>
                             <Trail
