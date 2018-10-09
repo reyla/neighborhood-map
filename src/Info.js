@@ -23,6 +23,7 @@ class Info extends React.Component {
                         <li key={trail.id}>
                             <Trail
                             trail={trail}
+                            online={this.props.isOnline}
                             />
                         </li>
                          ))} 

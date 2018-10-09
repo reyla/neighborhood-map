@@ -13,7 +13,9 @@ class Trail extends React.Component {
                     <p>Length: {this.props.trail.length} miles<br/>
                     Difficulty: {this.props.trail.difficulty}</p>
                     <p>{this.props.trail.summary}</p>
-                    <a href={this.props.trail.url}>Learn more on HikingProject.com</a>
+                    <div style={{ visibility: this.props.online ? "visible" : "hidden" }}>
+                        <a href={this.props.trail.url}>Learn more on HikingProject.com</a>
+                    </div>
                 </div>
             </div>
             )
