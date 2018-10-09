@@ -12,7 +12,6 @@ class Info extends React.Component {
             <div id="content">
                     <h3>Hiking Trails</h3>
                     <p>Showing {this.props.trails.length} results for trails near Carrboro, NC.</p>
-                    <p>Filter options:</p>
                     <select value="20" onChange={(value) => {onChangeMaxLength(value)}}>
                         <option value="20">All Results</option>
                         <option value="3">Max 3 miles</option>

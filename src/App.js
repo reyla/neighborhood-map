@@ -349,7 +349,6 @@ class App extends Component {
           <button id="backButton" type="button" onClick={this.handleMenuClick.bind(this)}>Map View</button>
           <Info 
             trails={this.state.trails.filter((trail) => {return trail.length <= this.state.maxLength})}
-            isSidebarOpen={this.state.isSidebarOpen}
             isOnline={this.state.online}
             maxLength={this.props.maxLength}
             onChangeMaxLength={this.changeMaxLength.bind(this)}
