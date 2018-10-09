@@ -30,7 +30,7 @@ class App extends Component {
   state = {
     isSidebarOpen: false,
     online: true,
-    maxLength: 'allresults',
+    maxLength: 20,
     trails: [
       {
           "name": "Battle Branch / Bolin Creek Loop",
@@ -313,28 +313,46 @@ class App extends Component {
         // change the content of infowindow
         infowindow.setContent(contentString)
         // open infowindow
-        infowindow.open(map, marker);
+        infowindow.open(map, marker)
       })
       
       return thisTrail
     })
   }
 
+  /* change maxLength when user selects different maximum trail length in sidebar filter*/
+  changeMaxLength(value) {
+    // pull the desired max length from the value user selected
+    let trailLength = value.target.value
+    // change from string to number
+    let number = parseInt(trailLength)
+    // update the state
+    this.setState({ maxLength: number })
+  }
+    
+
+
   render() {
     return (
       <main>
         <div id="map">
-          <div id="offline" style={{ visibility: this.state.online ? "hidden" : "visible" }}>You are offline.</div>
-          <img src={staticmap} alt="Static Map of Hiking Trails"/>
+          <div id="offline" style={{ visibility: this.state.online ? "hidden" : "visible" }}>
+            <p id="offline-message">You are offline.</p>
+            <img src={staticmap} alt="Static Map of Hiking Trails"/>
+          </div>
         </div>
-        <button id="sidebarButton" autoFocus="True" type="button" onClick={this.handleMenuClick.bind(this)}>List View</button>
+        <button id="sidebarButton" 
+                autoFocus="True" 
+                type="button" 
+                onClick={this.handleMenuClick.bind(this)}>List View</button>
         <div id="sidebar" style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}>
           <button id="backButton" type="button" onClick={this.handleMenuClick.bind(this)}>Map View</button>
           <Info 
-            trails={this.state.trails}
+            trails={this.state.trails.filter((trail) => {return trail.length <= this.state.maxLength})}
             isSidebarOpen={this.state.isSidebarOpen}
             isOnline={this.state.online}
             maxLength={this.props.maxLength}
+            onChangeMaxLength={this.changeMaxLength.bind(this)}
           />
         </div>
       </main>

@@ -117,7 +117,7 @@ html, body {
 
 /* Offline Elements */
 
-#offline {
+#offline-message {
   position: absolute;
   top: 20px;
   left: 0px;
