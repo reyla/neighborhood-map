@@ -350,7 +350,7 @@ class App extends Component {
           <Info 
             trails={this.state.trails.filter((trail) => {return trail.length <= this.state.maxLength})}
             isOnline={this.state.online}
-            maxLength={this.props.maxLength}
+            maxLength={this.state.maxLength}
             onChangeMaxLength={this.changeMaxLength.bind(this)}
           />
         </div>
