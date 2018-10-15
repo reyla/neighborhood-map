@@ -3,6 +3,7 @@ import Info from './Info';
 import MapSection from './MapSection';
 import './App.css';
 import axios from 'axios';
+import { Offline, Online } from "react-detect-offline";
 import staticmap from './img/staticmap.png';
 import img1 from './img/img1.jpg';
 import img2 from './img/img2.jpg';
@@ -348,16 +349,17 @@ class App extends Component {
   render() {
     return (
       <main>
-        <MapSection
+        <Online>
+          <MapSection
             trails={this.state.currentTrails.filter((trail) => {return trail.length <= this.state.maxLength})} 
-        />
-        <div id="offline" 
-             style={{ height: this.state.online ? 0 : "100%" },
-                    { width: this.state.online ? 0 : "100%" }, 
-                    { visibility: this.state.online ? "hidden" : "visible" }}>
+          />
+        </Online>
+        <Offline>
+          <div id="offline">
             <p id="offline-message">You are offline.</p>
             <img src={staticmap} alt="Static Map of Hiking Trails"/>
-        </div>
+          </div>
+        </Offline>
         <button id="sidebarButton" 
                 autoFocus="True" 
                 type="button" 
