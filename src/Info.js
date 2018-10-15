@@ -11,7 +11,7 @@ class Info extends React.Component {
         return (
             <div id="content">
                     <h3>Hiking Trails Map</h3>
-                    <p>Hiking trail information is sourced from REI's <a href="http://hikingproject.com" title="HikingProject.com">HikingProject.com</a>.</p>
+                    <p>Hiking trail information is sourced from <a href="http://hikingproject.com" title="HikingProject.com">HikingProject.com</a>.</p>
                     <p>Showing {this.props.trails.length} results for trails near Carrboro, NC.</p>
                     <select value={this.props.maxLength ? this.props.maxLength : '20'} onChange={value => {onChangeMaxLength(value)}}>
                         <option value="selectMaxLength">Select max length...</option>
@@ -26,7 +26,6 @@ class Info extends React.Component {
                             onClick={(evt) => this.props.onMarkerClick(trail, evt)}>
                             <Trail
                             trail={trail}
-                            online={this.props.isOnline}
                             maxLength={this.props.maxLength}
                             />
                         </li>

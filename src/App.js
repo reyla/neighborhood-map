@@ -31,7 +31,6 @@ class App extends Component {
 
   state = {
     isSidebarOpen: false,
-    online: true,
     maxLength: 20,
     selectedMarker: {},
     currentTrails: [],
@@ -368,7 +367,6 @@ class App extends Component {
           <button id="backButton" type="button" onClick={this.handleMenuClick.bind(this)}>Map View</button>
           <Info 
             trails={this.state.currentTrails.filter((trail) => {return trail.length <= this.state.maxLength})}
-            isOnline={this.state.online}
             maxLength={this.state.maxLength}
             onChangeMaxLength={this.changeMaxLength.bind(this)}
             onMarkerClick={this.markerClick.bind(this)}
