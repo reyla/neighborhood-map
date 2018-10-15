@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Info from './Info';
+import MapSection from './MapSection';
 import './App.css';
 import axios from 'axios';
 import staticmap from './img/staticmap.png';
@@ -32,7 +33,8 @@ class App extends Component {
     online: true,
     maxLength: 20,
     selectedMarker: {},
-    trails: [
+    currentTrails: [],
+    origTrails: [
       {
         "id": 7010880,
         "name": "Battle Branch / Bolin Creek Loop",
@@ -248,45 +250,31 @@ class App extends Component {
     this.getTrails()
   }
 
+  initMap = () => {
+    // create a map
+    const map = new window.google.maps.Map(document.getElementById('map'), {
+        center: {lat: 35.909967, lng: -79.075229},
+        zoom: 10
+    })
+    // adjust current trails to filter by maxLength
+    let updatedTrails = this.state.currentTrails.filter((trail) => {return trail.length <= this.state.maxLength})
+    // create trail markers
+    this.createMarkers(updatedTrails, map)
+  }
+
   renderMap = () => {
     loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDAKvy5lm0G0jkaL6-OwZRqZtv9d4Cgqqw&callback=initMap")
     window.initMap = this.initMap
   }
 
-  getTrails = () => {
-    const endPoint = "https://www.hikingproject.com/data/get-trails?"
-    const parameters = {
-      key: '7127990-5024e929ecbd22e7834e19ea1890f393',
-      lat: '35.909967',
-      lon: '-79.075229',
-      maxDistance: 100,
-      maxResults: 20,
-      sort: 'distance',  /* quality or distance */
-    }
-
-    axios.get(endPoint + new URLSearchParams(parameters))
-      // first get the array of trails before rendering the map
-      .then(response => {
-        this.setState({
-          trails: response.data.trails
-        }, this.renderMap())
-      })
-      .catch(error => {
-        console.log("Error fetching trails." + error)
-        this.setState({ 
-          online: false 
-        })
-      })
-  }
-
-  createMarkers = (currentTrails, map) => {
+  createMarkers = (trails, map) => {
     // create a generic infowindow
     var infowindow = new window.google.maps.InfoWindow({maxWidth: 300})
     // Loop over each trail in state array to load dynamic markers
-    currentTrails.map((thisTrail) => {
-      // create content for infowindow
-      var image = thisTrail.imgSmall
-      var contentString = '<div id="popup">' + 
+    trails.map((thisTrail) => {
+    // create content for infowindow
+    var image = thisTrail.imgSmall
+    var contentString = '<div id="popup">' + 
         '<img src="' + image + '"/>' + 
         '<h3 id="trailName">' + 
         `${thisTrail.name}` +
@@ -300,34 +288,47 @@ class App extends Component {
         '</p> <a href="' +
         `${thisTrail.url}` +
         '">Learn more on HikingProject.com</a></div>'
-      // create map marker for the trail   
-      var marker = new window.google.maps.Marker({
+    // create map marker for the trail   
+    var marker = new window.google.maps.Marker({
         position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
         map: map,
         title: thisTrail.name
-      })
-      // click on marker
-      marker.addListener('click', function() {
+    })
+    // click on marker
+    marker.addListener('click', function() {
         // change the content of infowindow
         infowindow.setContent(contentString)
         // open infowindow
         infowindow.open(map, marker)
-      })
-      
-      return thisTrail
+    })      
+    return thisTrail
     })
   }
 
-  initMap = () => {
-    // create a map
-    const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: {lat: 35.909967, lng: -79.075229},
-      zoom: 10
-    })
-    // adjust current trails to filter by maxLength
-    let currentTrails = this.state.trails.filter((trail) => {return trail.length <= this.state.maxLength})
-    // create trail markers
-    this.createMarkers(currentTrails, map)
+  getTrails = () => {
+    const endPoint = "https://www.hikingproject.com/data/get-trails?"
+    const parameters = {
+      key: '7127990-5024e929ecbd22e7834e19ea1890f393',
+      lat: '35.909967',
+      lon: '-79.075229',
+      maxDistance: 100,
+      maxResults: 20,
+      sort: 'distance',  /* quality or distance */
+    }
+    axios.get(endPoint + new URLSearchParams(parameters))
+      // first get the array of trails before rendering the map
+      .then(response => {
+        this.setState({
+          currentTrails: response.data.trails
+        }, this.renderMap())
+      })
+      .catch(error => {
+        console.log("Error fetching trails." + error)
+        this.setState({ 
+          online: false,
+          currentTrails: this.state.origTrails
+        })
+      })
   }
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
@@ -347,11 +348,15 @@ class App extends Component {
   render() {
     return (
       <main>
-        <div id="map">
-          <div id="offline" style={{ visibility: this.state.online ? "hidden" : "visible" }}>
+        <MapSection
+            trails={this.state.currentTrails.filter((trail) => {return trail.length <= this.state.maxLength})} 
+        />
+        <div id="offline" 
+             style={{ height: this.state.online ? 0 : "100%" },
+                    { width: this.state.online ? 0 : "100%" }, 
+                    { visibility: this.state.online ? "hidden" : "visible" }}>
             <p id="offline-message">You are offline.</p>
             <img src={staticmap} alt="Static Map of Hiking Trails"/>
-          </div>
         </div>
         <button id="sidebarButton" 
                 autoFocus="True" 
@@ -360,7 +365,7 @@ class App extends Component {
         <div id="sidebar" style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}>
           <button id="backButton" type="button" onClick={this.handleMenuClick.bind(this)}>Map View</button>
           <Info 
-            trails={this.state.trails.filter((trail) => {return trail.length <= this.state.maxLength})}
+            trails={this.state.currentTrails.filter((trail) => {return trail.length <= this.state.maxLength})}
             isOnline={this.state.online}
             maxLength={this.state.maxLength}
             onChangeMaxLength={this.changeMaxLength.bind(this)}
