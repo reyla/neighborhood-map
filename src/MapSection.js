@@ -1,10 +1,6 @@
 import React from 'react';
 
-class MapSection extends React.Component {
-    
-
-    
-    
+class MapSection extends React.Component {    
 
     render() {   
 

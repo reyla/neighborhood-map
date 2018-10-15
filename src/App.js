@@ -272,27 +272,27 @@ class App extends Component {
     var infowindow = new window.google.maps.InfoWindow({maxWidth: 300})
     // Loop over each trail in state array to load dynamic markers
     trails.map((thisTrail) => {
-    // create content for infowindow
-    var image = thisTrail.imgSmall
-    var contentString = '<div id="popup">' + 
-        '<img src="' + image + '"/>' + 
-        '<h3 id="trailName">' + 
-        `${thisTrail.name}` +
-        '</h3>' +
-        '<p id="trailInfo">Length: ' +
-        `${thisTrail.length}` +
-        ' miles<br/> Difficulty: ' +
-        `${thisTrail.difficulty}` +
-        '</p><p id="trailSummary">' + 
-        `${thisTrail.summary}` +
-        '</p> <a href="' +
-        `${thisTrail.url}` +
-        '">Learn more on HikingProject.com</a></div>'
-    // create map marker for the trail   
-    var marker = new window.google.maps.Marker({
-        position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
-        map: map,
-        title: thisTrail.name
+      // create content for infowindow
+      var image = thisTrail.imgSmall
+      var contentString = '<div id="popup">' + 
+          '<img src="' + image + '"/>' + 
+          '<h3 id="trailName">' + 
+          `${thisTrail.name}` +
+          '</h3>' +
+          '<p id="trailInfo">Length: ' +
+          `${thisTrail.length}` +
+          ' miles<br/> Difficulty: ' +
+          `${thisTrail.difficulty}` +
+          '</p><p id="trailSummary">' + 
+          `${thisTrail.summary}` +
+          '</p> <a href="' +
+          `${thisTrail.url}` +
+          '">Learn more on HikingProject.com</a></div>'
+      // create map marker for the trail   
+      var marker = new window.google.maps.Marker({
+          position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
+          map: map,
+          title: thisTrail.name
     })
     // click on marker
     marker.addListener('click', function() {
@@ -350,7 +350,8 @@ class App extends Component {
       <main>
         <Online>
           <MapSection
-            trails={this.state.currentTrails.filter((trail) => {return trail.length <= this.state.maxLength})} 
+            trails={this.state.currentTrails.filter((trail) => {return trail.length <= this.state.maxLength})}
+            updateMarkers={this.createMarkers.bind(this)}
           />
         </Online>
         <Offline>
