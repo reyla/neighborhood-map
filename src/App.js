@@ -31,6 +31,7 @@ class App extends Component {
     isSidebarOpen: false,
     online: true,
     maxLength: 20,
+    selectedMarker: {},
     trails: [
       {
         "id": 7010880,
@@ -235,6 +236,10 @@ class App extends Component {
   ]
   }
 
+  markerClick = (marker) => {
+    this.setState({ selectedMarker: marker });
+  }
+
   handleMenuClick() {
     this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
   }
@@ -274,19 +279,9 @@ class App extends Component {
       })
   }
 
-  initMap = () => {
-    // create a map
-    const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: {lat: 35.909967, lng: -79.075229},
-      zoom: 10
-    })
-
+  createMarkers = (currentTrails, map) => {
     // create a generic infowindow
     var infowindow = new window.google.maps.InfoWindow({maxWidth: 300})
-
-    // adjust current trails to filter by maxLength
-    let currentTrails = this.state.trails.filter((trail) => {return trail.length <= this.state.maxLength})
-
     // Loop over each trail in state array to load dynamic markers
     currentTrails.map((thisTrail) => {
       // create content for infowindow
@@ -305,7 +300,7 @@ class App extends Component {
         '</p> <a href="' +
         `${thisTrail.url}` +
         '">Learn more on HikingProject.com</a></div>'
-      // create marker      
+      // create map marker for the trail   
       var marker = new window.google.maps.Marker({
         position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
         map: map,
@@ -321,6 +316,18 @@ class App extends Component {
       
       return thisTrail
     })
+  }
+
+  initMap = () => {
+    // create a map
+    const map = new window.google.maps.Map(document.getElementById('map'), {
+      center: {lat: 35.909967, lng: -79.075229},
+      zoom: 10
+    })
+    // adjust current trails to filter by maxLength
+    let currentTrails = this.state.trails.filter((trail) => {return trail.length <= this.state.maxLength})
+    // create trail markers
+    this.createMarkers(currentTrails, map)
   }
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
@@ -357,6 +364,7 @@ class App extends Component {
             isOnline={this.state.online}
             maxLength={this.state.maxLength}
             onChangeMaxLength={this.changeMaxLength.bind(this)}
+            onMarkerClick={this.markerClick.bind(this)}
           />
         </div>
       </main>

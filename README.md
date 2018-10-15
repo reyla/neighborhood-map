@@ -20,9 +20,10 @@ All npm dependencies are listed in [package.json](package.json).
 
 ## Sources
 
-Google Maps api integration was guided by videos...
+Google Maps API integration and setup was guided by tutorial videos by Yahya Elharony.
+https://www.youtube.com/channel/UCcWSbBe_s-T_gZRnqFbtyIA
 
-HikingProject.com api
+External API data from HikingProject.com.
 
 Your Rating
   Easy: walking with no obstacles and low grades
