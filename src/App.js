@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Info from './Info';
-import MapSection from './MapSection';
 import './App.css';
 import axios from 'axios';
 import { Offline, Online } from "react-detect-offline";
@@ -339,6 +338,7 @@ class App extends Component {
     sidebar.getAttribute('aria-expanded') === 'false' ? sidebar.setAttribute('aria-expanded', 'true') :	sidebar.setAttribute('aria-expanded', 'false')
   }
   
+  /* when user clicks on list item in sidebar */
   listClick = (item) => {
     this.setState({ selectedMarker: item })
     this.state.markers.forEach(marker => {
@@ -389,8 +389,7 @@ class App extends Component {
     return (
       <main>
         <Online>
-          <MapSection
-          />
+          <div id="map" aria-label="map"></div>
         </Online>
         <Offline>
           <div id="offline">
