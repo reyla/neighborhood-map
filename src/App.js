@@ -338,7 +338,11 @@ class App extends Component {
 
   /* function that controls the sidebar opening */
   handleMenuClick() {
-    this.setState({ isSidebarOpen: !this.state.isSidebarOpen })  
+    this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
+    // control aria attributes
+    let sidebar = document.querySelector('#sidebar')
+    sidebar.getAttribute('aria-hidden') === 'true' ? sidebar.setAttribute('aria-hidden', 'false') : sidebar.setAttribute('aria-hidden', 'true')
+    sidebar.getAttribute('aria-expanded') === 'false' ? sidebar.setAttribute('aria-expanded', 'true') :	sidebar.setAttribute('aria-expanded', 'false')
   }
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
@@ -374,7 +378,7 @@ class App extends Component {
                 autoFocus="True" 
                 type="button" 
                 onClick={this.handleMenuClick.bind(this)}>List View</button>
-        <div id="sidebar" style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}>
+        <div id="sidebar" style={{ width: this.state.isSidebarOpen ? "100%" : 0 }} aria-expanded="false" aria-hidden="true">
           <button id="backButton" type="button" onClick={this.handleMenuClick.bind(this)}>Map View</button>
           <Info 
             trails={this.state.currentTrails.filter(trail => {return trail.length <= this.state.maxLength})}
