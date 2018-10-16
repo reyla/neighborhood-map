@@ -32,7 +32,9 @@ class App extends Component {
   state = {
     isSidebarOpen: false,
     maxLength: 20,
+    map: {},
     selectedMarker: {},
+    markers: [],
     currentTrails: [],
     origTrails: [
       {
@@ -275,24 +277,23 @@ class App extends Component {
   
   initMap = () => {
     // create a map
-    const map = new window.google.maps.Map(document.getElementById('map'), {
+    var map = new window.google.maps.Map(document.getElementById('map'), {
         center: {lat: 35.909967, lng: -79.075229},
         zoom: 10
     })
+    this.setState({ map: map })
+    console.log('This is the map state')
+    console.log(this.state.map)
     // create trail markers
     this.createMarkers(this.state.currentTrails, map)
   }
 
   createMarkers = (trails, map) => {
-    // create a generic infowindow
-    var infowindow = new window.google.maps.InfoWindow({maxWidth: 300})
-    // create empty array to store markers
-    var markers = []
-    // Loop over each trail in state array to load dynamic markers
-    trails.map((thisTrail) => {
+    // Loop over each trail in state array to create dynamic markers
+    let markersArray = trails.map(thisTrail => {
       // create content for infowindow
-      var image = thisTrail.imgSmall
-      var contentString = '<div id="popup">' + 
+      let image = thisTrail.imgSmall
+      let contentString = '<div id="popup">' + 
           '<img src="' + image + '"/>' + 
           '<h3 id="trailName">' + 
           `${thisTrail.name}` +
@@ -307,44 +308,52 @@ class App extends Component {
           `${thisTrail.url}` +
           '">Learn more on HikingProject.com</a></div>'
       // create map marker for the trail   
-      var marker = new window.google.maps.Marker({
+      let marker = new window.google.maps.Marker({
           position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
           map: map,
-          title: thisTrail.name
+          title: thisTrail.name,
+          animation: window.google.maps.Animation.DROP
       })
-      // add marker to array
-      markers.push(marker)
+      // create a generic infowindow
+      let infowindow = new window.google.maps.InfoWindow({ maxWidth: 300 })
       // click on marker
       marker.addListener('click', function() {
           // change the content of infowindow
           infowindow.setContent(contentString)
           // open infowindow
           infowindow.open(map, marker)
-      })      
+      })
       return thisTrail
     })
+    this.setState({ markers: markersArray })
+    console.log('Current markers:')
+    console.log(this.state.markers)
   }
-
+  
   markerClick = (marker) => {
     this.setState({ selectedMarker: marker })
+    console.log('Currently selected marker:')
+    console.log(this.state.selectedMarker)
   }
 
   /* function that controls the sidebar opening */
   handleMenuClick() {
-    this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
+    this.setState({ isSidebarOpen: !this.state.isSidebarOpen })  
   }
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
-  changeMaxLength(value) {
+  changeMaxLength = (value) => {
     // pull the desired max length from the value user selected
     let trailLength = value.target.value
     // change from string to number
     let number = parseInt(trailLength)
     // update the maxLength state
     this.setState({ maxLength: number })
-    // update the currentTrails state so that map reloads automatically
+    // update the currentTrails state
     let updatedTrails = this.state.currentTrails.filter(trail => {return trail.length <= this.state.maxLength})
     this.setState({ currentTrails: updatedTrails})
+    this.setState({ markers: [] })
+    this.createMarkers(this.state.currentTrails, this.state.map)
   }
     
 
@@ -368,7 +377,7 @@ class App extends Component {
         <div id="sidebar" style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}>
           <button id="backButton" type="button" onClick={this.handleMenuClick.bind(this)}>Map View</button>
           <Info 
-            trails={this.state.currentTrails.filter((trail) => {return trail.length <= this.state.maxLength})}
+            trails={this.state.currentTrails.filter(trail => {return trail.length <= this.state.maxLength})}
             maxLength={this.state.maxLength}
             onChangeMaxLength={this.changeMaxLength.bind(this)}
             onMarkerClick={this.markerClick.bind(this)}

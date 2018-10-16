@@ -25,7 +25,6 @@ class Info extends React.Component {
                         <li key={trail.id}>
                             <Trail
                             trail={trail}
-                            maxLength={this.props.maxLength}
                             onMarkerClick={this.props.onMarkerClick}
                             />
                         </li>
@@ -33,7 +32,6 @@ class Info extends React.Component {
                     </ol>
             </div>
         )
-
     }
 }
 
