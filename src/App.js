@@ -337,9 +337,11 @@ class App extends Component {
   listClick = (item) => {
     this.setState({ selectedMarker: item })
     this.state.markers.forEach(marker => {
-      if (item.trail.id === marker.key) {
+      if (item.key === marker.key) {
         // pretend someone clicked on the marker icon
         window.google.maps.event.trigger(marker, 'click')
+        // force close the sidebar
+        this.handleMenuClick()
       }
     })
     console.log('Currently selected marker:')
