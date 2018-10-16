@@ -31,7 +31,6 @@ class App extends Component {
   state = {
     isSidebarOpen: false,
     maxLength: 20,
-    selectedMarker: {},
     markers: [],
     currentTrails: [],
     origTrails: [
@@ -242,6 +241,7 @@ class App extends Component {
     this.getTrails()
   }
   
+  /* Pull locations from HikingProject api */
   getTrails = () => {
     const endPoint = "https://www.hikingproject.com/data/get-trails?"
     const parameters = {
@@ -274,14 +274,22 @@ class App extends Component {
   }
   
   initMap = () => {
-    // create a map
+    // create a new google map
     var map = new window.google.maps.Map(document.getElementById('map'), {
         center: {lat: 35.909967, lng: -79.075229},
         zoom: 10
     })
     let bounds = new window.google.maps.LatLngBounds();
+    /* if we already created markers and filtered them
+     * THIS CODE DOESN'T WORK 
+    if ( this.state.markers.length > 0) {
+      this.setState({currentTrails: this.state.markers})
+    }
+    */
     // Loop over each trail in state array to create dynamic markers
     let markersArray = this.state.currentTrails.map(thisTrail => {
+      // create a generic infowindow
+      let infowindow = new window.google.maps.InfoWindow({ maxWidth: 300 })
       // create content for infowindow
       let image = thisTrail.imgSmall
       let contentString = '<div id="popup">' + 
@@ -308,13 +316,11 @@ class App extends Component {
       })
       // extend the map boundaries
       bounds.extend(marker.position)
-      // create a generic infowindow
-      let infowindow = new window.google.maps.InfoWindow({ maxWidth: 300 })
-      // click on marker
+      // click on marker to see location info
       marker.addListener('click', function() {
           // change the content of infowindow
           infowindow.setContent(contentString)
-          // focus on the selected marker
+          // center the selected marker on the map
           map.panTo(marker.getPosition())
           // open infowindow
           infowindow.open(map, marker)
@@ -337,10 +343,9 @@ class App extends Component {
     sidebar.getAttribute('aria-hidden') === 'true' ? sidebar.setAttribute('aria-hidden', 'false') : sidebar.setAttribute('aria-hidden', 'true')
     sidebar.getAttribute('aria-expanded') === 'false' ? sidebar.setAttribute('aria-expanded', 'true') :	sidebar.setAttribute('aria-expanded', 'false')
   }
-  
+
   /* when user clicks on list item in sidebar */
   listClick = (item) => {
-    this.setState({ selectedMarker: item })
     this.state.markers.forEach(marker => {
       if (item.key === marker.key) {
         // pretend someone clicked on the marker icon
@@ -349,8 +354,6 @@ class App extends Component {
         this.handleMenuClick()
       }
     })
-    console.log('Currently selected marker:')
-    console.log(this.state.selectedMarker)
   }
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
