@@ -330,6 +330,15 @@ class App extends Component {
     console.log(this.state.markers)
   }
   
+  /* function that controls the sidebar opening */
+  handleMenuClick() {
+    this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
+    // control aria attributes
+    let sidebar = document.querySelector('#sidebar')
+    sidebar.getAttribute('aria-hidden') === 'true' ? sidebar.setAttribute('aria-hidden', 'false') : sidebar.setAttribute('aria-hidden', 'true')
+    sidebar.getAttribute('aria-expanded') === 'false' ? sidebar.setAttribute('aria-expanded', 'true') :	sidebar.setAttribute('aria-expanded', 'false')
+  }
+  
   listClick = (item) => {
     this.setState({ selectedMarker: item })
     this.state.markers.forEach(marker => {
@@ -344,17 +353,11 @@ class App extends Component {
     console.log(this.state.selectedMarker)
   }
 
-  /* function that controls the sidebar opening */
-  handleMenuClick() {
-    this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
-    // control aria attributes
-    let sidebar = document.querySelector('#sidebar')
-    sidebar.getAttribute('aria-hidden') === 'true' ? sidebar.setAttribute('aria-hidden', 'false') : sidebar.setAttribute('aria-hidden', 'true')
-    sidebar.getAttribute('aria-expanded') === 'false' ? sidebar.setAttribute('aria-expanded', 'true') :	sidebar.setAttribute('aria-expanded', 'false')
-  }
-
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
   changeMaxLength = (value) => {
+    // reset to original trails just in case they move from short to long maxlength
+    // otherwise you keep filtering down to 0 total trails (i think)
+    this.setState({ currentTrails: this.state.origTrails })
     // pull the desired max length from the value user selected
     let trailLength = value.target.value
     // change from string to number
@@ -364,9 +367,23 @@ class App extends Component {
     // update the currentTrails state
     let updatedTrails = this.state.currentTrails.filter(trail => {return trail.length <= this.state.maxLength})
     this.setState({ currentTrails: updatedTrails})
-    this.setState({ markers: [] })
+    // update the markers state
+    this.updateMarkers()    
   }
     
+  updateMarkers() {
+    // filter markers to pull out markers that don't have correct trail length
+    let markersToDelete = this.state.markers.filter(marker => {
+      return marker.length > this.state.maxLength
+    })    
+    // update the bad markers so that they are hidden
+    let updatedMarkers = markersToDelete.map(marker => {
+      return marker.setVisible(false)
+    })
+    this.setState({ markers: updatedMarkers })
+    console.log('The markers were updated')
+    console.log(this.state.markers)
+  }
 
   render() {
     return (
@@ -389,6 +406,7 @@ class App extends Component {
           <button id="backButton" type="button" onClick={this.handleMenuClick.bind(this)}>Map View</button>
           <Info 
             trails={this.state.currentTrails.filter(trail => {return trail.length <= this.state.maxLength})}
+            markers={this.state.markers}
             maxLength={this.state.maxLength}
             onChangeMaxLength={this.changeMaxLength.bind(this)}
             onListClick={this.listClick.bind(this)}
