@@ -32,7 +32,6 @@ class App extends Component {
   state = {
     isSidebarOpen: false,
     maxLength: 20,
-    map: {},
     selectedMarker: {},
     markers: [],
     currentTrails: [],
@@ -281,9 +280,6 @@ class App extends Component {
         center: {lat: 35.909967, lng: -79.075229},
         zoom: 10
     })
-    this.setState({ map: map })
-    console.log('This is the map state')
-    console.log(this.state.map)
     let bounds = new window.google.maps.LatLngBounds();
     // Loop over each trail in state array to create dynamic markers
     let markersArray = this.state.currentTrails.map(thisTrail => {
