@@ -25,7 +25,7 @@ class Info extends React.Component {
                         <li key={trail.id}>
                             <Trail
                             trail={trail}
-                            onMarkerClick={this.props.onMarkerClick}
+                            onListClick={this.props.onListClick}
                             />
                         </li>
                          ))} 

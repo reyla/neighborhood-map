@@ -284,13 +284,9 @@ class App extends Component {
     this.setState({ map: map })
     console.log('This is the map state')
     console.log(this.state.map)
-    // create trail markers
-    this.createMarkers(this.state.currentTrails, map)
-  }
-
-  createMarkers = (trails, map) => {
+    let bounds = new window.google.maps.LatLngBounds();
     // Loop over each trail in state array to create dynamic markers
-    let markersArray = trails.map(thisTrail => {
+    let markersArray = this.state.currentTrails.map(thisTrail => {
       // create content for infowindow
       let image = thisTrail.imgSmall
       let contentString = '<div id="popup">' + 
@@ -311,17 +307,25 @@ class App extends Component {
       let marker = new window.google.maps.Marker({
           position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
           map: map,
+          key: thisTrail.id,
           title: thisTrail.name,
           animation: window.google.maps.Animation.DROP
       })
+      // extend the map boundaries
+      bounds.extend(marker.position)
       // create a generic infowindow
       let infowindow = new window.google.maps.InfoWindow({ maxWidth: 300 })
       // click on marker
       marker.addListener('click', function() {
           // change the content of infowindow
           infowindow.setContent(contentString)
+          // focus on the selected marker
+          map.panTo(marker.getPosition())
           // open infowindow
           infowindow.open(map, marker)
+          // bounce the marker icon for 2 seconds
+          marker.setAnimation(window.google.maps.Animation.BOUNCE)
+          setTimeout(() => marker.setAnimation(null), 2000)
       })
       return thisTrail
     })
@@ -330,8 +334,14 @@ class App extends Component {
     console.log(this.state.markers)
   }
   
-  markerClick = (marker) => {
-    this.setState({ selectedMarker: marker })
+  listClick = (item) => {
+    this.setState({ selectedMarker: item })
+    this.state.markers.forEach(marker => {
+      if (item.trail.id === marker.key) {
+        // pretend someone clicked on the marker icon
+        window.google.maps.event.trigger(marker, 'click')
+      }
+    })
     console.log('Currently selected marker:')
     console.log(this.state.selectedMarker)
   }
@@ -357,7 +367,6 @@ class App extends Component {
     let updatedTrails = this.state.currentTrails.filter(trail => {return trail.length <= this.state.maxLength})
     this.setState({ currentTrails: updatedTrails})
     this.setState({ markers: [] })
-    this.createMarkers(this.state.currentTrails, this.state.map)
   }
     
 
@@ -384,7 +393,7 @@ class App extends Component {
             trails={this.state.currentTrails.filter(trail => {return trail.length <= this.state.maxLength})}
             maxLength={this.state.maxLength}
             onChangeMaxLength={this.changeMaxLength.bind(this)}
-            onMarkerClick={this.markerClick.bind(this)}
+            onListClick={this.listClick.bind(this)}
           />
         </div>
       </main>
