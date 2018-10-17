@@ -1,3 +1,8 @@
+/* TODO:
+ * - when user selects new max length, filter map markers based on desired max length
+ * - when user clicks on list item, the map marker should bounce
+ */
+
 import React, { Component } from 'react';
 import Info from './Info';
 import './App.css';
@@ -280,12 +285,6 @@ class App extends Component {
         zoom: 10
     })
     let bounds = new window.google.maps.LatLngBounds();
-    /* if we already created markers and filtered them
-     * THIS CODE DOESN'T WORK 
-    if ( this.state.markers.length > 0) {
-      this.setState({currentTrails: this.state.markers})
-    }
-    */
     // Loop over each trail in state array to create dynamic markers
     let markersArray = this.state.currentTrails.map(thisTrail => {
       // create a generic infowindow
@@ -358,9 +357,6 @@ class App extends Component {
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
   changeMaxLength = (value) => {
-    // reset to original trails just in case they move from short to long maxlength
-    // otherwise you keep filtering down to 0 total trails (i think)
-    this.setState({ currentTrails: this.state.origTrails })
     // pull the desired max length from the value user selected
     let trailLength = value.target.value
     // change from string to number
@@ -368,25 +364,48 @@ class App extends Component {
     // update the maxLength state
     this.setState({ maxLength: number })
     // update the currentTrails state
-    let updatedTrails = this.state.currentTrails.filter(trail => {return trail.length <= this.state.maxLength})
+    let updatedTrails = this.state.currentTrails.filter(trail => {
+      return trail.length <= this.state.maxLength
+    })
     this.setState({ currentTrails: updatedTrails})
     // update the markers state
     this.updateMarkers()    
   }
-    
+  
+  /* hide map markers that don't correspond to maxlength selected */
   updateMarkers() {
+    // this function is broken, it sets markers array to 0 :(
     // filter markers to pull out markers that don't have correct trail length
-    let markersToDelete = this.state.markers.filter(marker => {
+    let markersToHide = this.state.markers.filter(marker => {
       return marker.length > this.state.maxLength
-    })    
-    // update the bad markers so that they are hidden
-    let updatedMarkers = markersToDelete.map(marker => {
+    })
+    console.log('Markers to hide:')
+    console.log(markersToHide)
+    // set bad markers to invisible
+    markersToHide.forEach(marker => {
       return marker.setVisible(false)
     })
+    console.log('Markers set to invisible:')
+    console.log(markersToHide)
+    // exclude bad markers from current markers
+    let updatedMarkers = this.compareArrays(this.state.markers, markersToHide)
+    // update marker state
     this.setState({ markers: updatedMarkers })
     console.log('The markers were updated')
-    console.log(this.state.markers)
+    console.log(this.state.markers)   
   }
+
+  /* compare 2 arrays and subtract items in small array from large array */
+  compareArrays(lg, sm) {
+    const finalArray = []
+    lg.forEach((e1) => sm.forEach((e2) => {
+      if (e1 !== e2) {
+        finalArray.push(e1)
+      }
+    }))
+    return finalArray
+  }
+  
 
   render() {
     return (
