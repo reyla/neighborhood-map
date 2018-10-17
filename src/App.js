@@ -345,6 +345,7 @@ class App extends Component {
 
   /* when user clicks on list item in sidebar */
   listClick = (item) => {
+    console.log(item)
     this.state.markers.forEach(marker => {
       if (item.key === marker.key) {
         // pretend someone clicked on the marker icon

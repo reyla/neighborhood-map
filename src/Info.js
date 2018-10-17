@@ -22,9 +22,10 @@ class Info extends React.Component {
                     </select>
                     <ol id="trail-list-dynamic">
                     {this.props.trails.map(trail => (                               
-                        <li key={trail.id} onClick={(evt) => this.props.onListClick(this, evt)}>
+                        <li key={trail.id}>
                             <Trail
                             trail={trail}
+                            onListClick={this.props.onListClick}
                             />
                         </li>
                          ))} 
