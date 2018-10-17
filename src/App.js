@@ -343,17 +343,17 @@ class App extends Component {
     sidebar.getAttribute('aria-expanded') === 'false' ? sidebar.setAttribute('aria-expanded', 'true') :	sidebar.setAttribute('aria-expanded', 'false')
   }
 
+  /* this function doesn't seem to work :( 
   /* when user clicks on list item in sidebar */
   listClick = (item) => {
-    console.log(item)
     this.state.markers.forEach(marker => {
-      if (item.key === marker.key) {
+      if (item.key === marker.id) {
         // pretend someone clicked on the marker icon
         window.google.maps.event.trigger(marker, 'click')
-        // force close the sidebar
-        this.handleMenuClick()
       }
     })
+    // force close the sidebar
+    this.handleMenuClick()
   }
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/

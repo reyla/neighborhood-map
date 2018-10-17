@@ -4,12 +4,9 @@ import { Online } from "react-detect-offline";
 class Trail extends React.Component {
 
     render() {
-        const { onListClick,
-        } = this.props  
 
         return (
-        
-            <div className="trail-item" onClick={(evt) => {onListClick(evt)}}>         
+            <div className="trail-item">         
                 <div className="trail-img"><img src={this.props.trail.imgSmall} alt={this.props.trail.name}/></div>
                 <div className="trail-details">
                     <h3>{this.props.trail.name}</h3>
@@ -23,7 +20,7 @@ class Trail extends React.Component {
                     </Online>
                 </div>
             </div>
-            )
+        )
     }
 }
 
