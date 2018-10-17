@@ -11,8 +11,9 @@ In your project directory, install all project dependencies with `npm install`.
 Start the development server with `npm start`. It should automatically navigate your web browser to http://localhost:3000
 
 To create a production build, use `npm run build`. The service worker will not work unless it is a production build.
-For the most efficient Browserify production build, install a few plugins:
-npm install --save-dev envify uglify-js uglifyify 
+Then start the local server:
+`npm install -g serve`
+`serve -s build`
 
 ## Dependencies
 
