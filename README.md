@@ -1,6 +1,6 @@
 ﻿# Project Overview
 
-This React project uses Google maps API and REI's Hiking Project API to show hiking trails near Carrboro, NC. 
+This React project uses Google maps API and REI's Hiking Project API to show hiking trails around the Triangle area in NC. 
 
 Click on map marker icons to see more details about the trail.
 
