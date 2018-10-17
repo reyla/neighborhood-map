@@ -8,6 +8,8 @@ Click on "List View" button to open the sidebar and see a text list of trails. Y
 
 ## How To Run
 
+View demo version at https://reyla.github.io/neighborhood-map/
+
 You can clone this project using https://github.com/reyla/neighborhood-map.git
 
 In your project directory, install all project dependencies with `npm install`.
