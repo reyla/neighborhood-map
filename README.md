@@ -10,7 +10,9 @@ In your project directory, install all project dependencies with `npm install`.
 
 Start the development server with `npm start`. It should automatically navigate your web browser to http://localhost:3000
 
-The service worker will not work unless it is a production build.
+To create a production build, use `npm run build`. The service worker will not work unless it is a production build.
+For the most efficient Browserify production build, install a few plugins:
+npm install --save-dev envify uglify-js uglifyify 
 
 ## Dependencies
 
@@ -24,6 +26,8 @@ Google Maps API integration and setup was guided by tutorial videos by Yahya Elh
 https://www.youtube.com/channel/UCcWSbBe_s-T_gZRnqFbtyIA
 
 External API data from HikingProject.com.
+
+## Notes
 
 Your Rating
   Easy: walking with no obstacles and low grades
