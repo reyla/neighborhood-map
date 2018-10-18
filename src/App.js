@@ -92,7 +92,7 @@ class App extends Component {
           // change the content of infowindow
           infowindow.setContent(content)
           // center the selected marker on the map
-          map.panTo(marker.getPosition())
+          map.setCenter({lat: marker.latitude, lng: marker.longitude})
           // open infowindow
           infowindow.open(map, marker)
           // bounce the marker icon for 2 seconds
@@ -140,12 +140,18 @@ class App extends Component {
     console.log('Event, Trail:', event, trail);
     markers.forEach(marker => {
       if (trail.id === marker.id) {
+        // pretend someone clicked on the marker icon
         console.log('List item matches a marker:', trail, marker);
+        // center the selected marker on the map
+        map.setCenter({lat: marker.latitude, lng: marker.longitude})
         // create content for infowindow
         let content = this.buildInfowindowContent(marker)
-        // pretend someone clicked on the marker icon
         infowindow.setContent(content);
-        infowindow.open(map, marker); // this is throwing an error, but we're almost there!
+        // open infowindow
+        infowindow.open(map, marker)
+        // bounce the marker icon for 2 seconds
+        marker.setAnimation(window.google.maps.Animation.BOUNCE)
+        setTimeout(() => marker.setAnimation(null), 2000)
       }
     });
     // force close the sidebar
@@ -196,7 +202,7 @@ class App extends Component {
     return (
       <main>
         <Online>
-          <div id="map" aria-label="map"></div>
+          <div id="map" aria-label="hiking trails map" role="application"></div>
         </Online>
         <Offline>
           <div id="offline">
