@@ -20,7 +20,7 @@ class App extends Component {
     markers: [],
     map: null,
     infowindow: null,
-    currentTrails: [],
+    currentTrails: []
   }
 
   componentDidMount() {
@@ -65,15 +65,16 @@ class App extends Component {
         center: {lat: 35.909967, lng: -79.075229},
         zoom: 10
     })
+    // create a generic infowindow
+    let infowindow = new window.google.maps.InfoWindow({ maxWidth: 300 })
+    this.setState({
+      map: map,
+      infowindow: infowindow
+    })
+    this.setState({ map: map })
     let bounds = new window.google.maps.LatLngBounds();
     // Loop over each trail in state array to create dynamic markers
-    let markersArray = this.state.currentTrails.map(thisTrail => {
-      // create a generic infowindow
-      let infowindow = new window.google.maps.InfoWindow({ maxWidth: 300 })
-      this.setState({
-        map: map,
-        infowindow: infowindow
-      });      
+    let markersArray = this.state.currentTrails.map(thisTrail => {     
       // create content for infowindow
       let image = thisTrail.imgSmall
       let contentString = '<div id="popup">' + 
