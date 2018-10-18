@@ -27,38 +27,41 @@ html, body {
  * Styles for the Sidebar
  */
 
- #sidebarButton {
-    position: absolute;
-    top: 70px;
-    left: 0px;
-    margin: 0 .5em;
-    padding: .5em;
-    color: #f7eaf3;
-    background-color: #0c2448;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    -webkit-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
-    -moz-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
-    box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
- }
+#sidebarButton {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  margin: 0 .5em;
+  padding: .5em;
+  color: #f7eaf3;
+  background: #0c2448;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
 
- #sidebarButton:hover,
- #sidebarButton:focus {
-    cursor: pointer;
-    background-color: #1a8033;
-    color: #000;
- }
+#sidebarButton:hover,
+#sidebarButton:focus {
+  background: #6cd86c;
+  color: #000;
+  outline: 1px solid #fff;
+}
 
- #sidebar {
+#sidebar {
   height: 100%;
   width: 50%;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #1a8033;
-  color: #f7eaf3;
+  background-color: #6cd86c;
+  color: #0c2448;
   overflow-x: hidden;
   padding: 0;
   transition: 0.6s; /* transition effect to slide in the sidebar */
@@ -81,13 +84,14 @@ html, body {
 #trail-list-dynamic {
   margin: 0;
   padding: 20px;
+  list-style-type: none;
 }
 
 #trail-list-dynamic li {
-  border: 2px solid #ccc;
+  border-bottom: 2px solid #fff;
   font-family: Arial, sans-serif;
   margin: 15px 0;
-  padding: 0;
+  padding: 0 0 10px;
   text-align: left;
   width: 100%;
 }
@@ -99,30 +103,39 @@ html, body {
 
 .trail-img {
   width: 50%;
-  margin: 0 auto;
+  margin: 10px;
+}
+
+.trail-img img {
+  max-width: 300px;
 }
 
 .trail-details {
   width: 50%;
+  margin: 10px;
 }
 
 #backButton {
   margin: 1em;
   padding: .5em;
-  background-color: #b3b3b3;
+  background: #0c2448;
+  color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  -webkit-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
-  -moz-box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
-  box-shadow: 2px 2px 5px 0px rgba(158,158,158,1);
+  border: none;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
 }
 
 #backButton:hover,
 #backButton:focus {
-  cursor: pointer;
-  background-color: #0c2448;
-  color: #f7eaf3;
+  background: #fff;
+  color: #0c2448;
+  outline: 1px solid #0c2448;
 }
 
 /* Offline Elements */
