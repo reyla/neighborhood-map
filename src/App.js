@@ -71,7 +71,6 @@ class App extends Component {
       map: map,
       infowindow: infowindow
     })
-    this.setState({ map: map })
     let bounds = new window.google.maps.LatLngBounds()
     // Loop over each trail in state array to create dynamic markers
     let markersArray = this.state.currentTrails.map(thisTrail => {     
@@ -102,7 +101,6 @@ class App extends Component {
       return thisTrail
     })
     this.setState({ markers: markersArray })
-    console.log('Current markers:', this.state.markers)
   }
   
   /* create infowindow content for map view when marker is clicked */
@@ -137,21 +135,21 @@ class App extends Component {
   listClick = (event, trail) => {
     const { map, infowindow, markers } = this.state;
     console.log('State:', this.state);
-    console.log('Event, Trail:', event, trail);
+    console.log('Event:', event, 'Trail:', trail);
     markers.forEach(marker => {
       if (trail.id === marker.id) {
         // pretend someone clicked on the marker icon
-        console.log('List item matches a marker:', trail, marker);
+        // console.log('List item matches a marker:', trail, marker);
         // center the selected marker on the map
         map.setCenter({lat: marker.latitude, lng: marker.longitude})
         // create content for infowindow
         let content = this.buildInfowindowContent(marker)
         infowindow.setContent(content);
         // open infowindow
-        infowindow.open(map, marker)
+        infowindow.open(map, marker)  // causes an error!
         // bounce the marker icon for 2 seconds
-        marker.setAnimation(window.google.maps.Animation.BOUNCE)
-        setTimeout(() => marker.setAnimation(null), 2000)
+        // marker.setAnimation(window.google.maps.Animation.BOUNCE)
+        // setTimeout(() => marker.setAnimation(null), 2000)
       }
     });
     // force close the sidebar
