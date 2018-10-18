@@ -175,22 +175,13 @@ class App extends Component {
     })
     console.log('Markers supposedly set to invisible:', markersToHide)
     // exclude bad markers from current markers
-    let updatedMarkers = this.compareArrays(this.state.markers, markersToHide)
+    let updatedMarkers = compareArrays(this.state.markers, markersToHide)
     // update marker state
     this.setState({ markers: updatedMarkers })
     console.log('The markers were supposedly updated:', this.state.markers)   
   }
 
-  /* compare 2 arrays and subtract items in small array from large array */
-  compareArrays(lg, sm) {
-    const finalArray = []
-    lg.forEach((e1) => sm.forEach((e2) => {
-      if (e1 !== e2) {
-        finalArray.push(e1)
-      }
-    }))
-    return finalArray
-  }
+  
   
 
   render() {
@@ -239,5 +230,15 @@ function loadScript(url) {
   index.parentNode.insertBefore(script, index)
 }
 
+/* compare 2 arrays and subtract items in small array from large array */
+function compareArrays(lg, sm) {
+  const finalArray = []
+  lg.forEach((e1) => sm.forEach((e2) => {
+    if (e1 !== e2) {
+      finalArray.push(e1)
+    }
+  }))
+  return finalArray
+}
 
 export default App;
