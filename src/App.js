@@ -115,8 +115,7 @@ class App extends Component {
       return thisTrail
     })
     this.setState({ markers: markersArray })
-    console.log('Current markers:')
-    console.log(this.state.markers)
+    console.log('Current markers:', this.state.markers)
   }
   
   /* function that controls the sidebar opening */
@@ -131,12 +130,11 @@ class App extends Component {
   /* when user clicks on list item in sidebar */
   listClick = (event, trail) => {
     const { map, infowindow, markers } = this.state;
-    console.log(this.state);
-    console.log(event, trail);
-    console.log(this.state.markers);
+    console.log('State:', this.state);
+    console.log('Event, Trail:', event, trail);
     markers.forEach(marker => {
       if (trail.id === marker.id) {
-        console.log(trail, marker);
+        console.log('List item matches a marker:', trail, marker);
         // pretend someone clicked on the marker icon
         infowindow.setContent({ content: "test" });
         infowindow.open(map, marker); // this is throwing an error, but we're almost there!
@@ -170,20 +168,17 @@ class App extends Component {
     let markersToHide = this.state.markers.filter(marker => {
       return marker.length > this.state.maxLength
     })
-    console.log('Markers to hide:')
-    console.log(markersToHide)
+    console.log('Markers we need to hide:', markersToHide)
     // set bad markers to invisible
     markersToHide.forEach(marker => {
       return marker.setVisible(false)
     })
-    console.log('Markers set to invisible:')
-    console.log(markersToHide)
+    console.log('Markers supposedly set to invisible:', markersToHide)
     // exclude bad markers from current markers
     let updatedMarkers = this.compareArrays(this.state.markers, markersToHide)
     // update marker state
     this.setState({ markers: updatedMarkers })
-    console.log('The markers were updated')
-    console.log(this.state.markers)   
+    console.log('The markers were supposedly updated:', this.state.markers)   
   }
 
   /* compare 2 arrays and subtract items in small array from large array */
