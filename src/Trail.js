@@ -6,7 +6,9 @@ class Trail extends React.Component {
     render() {
 
         return (
-            <div className="trail-item">         
+            <div className="trail-item"
+                onClick={evt => {
+                    this.props.onClick(evt, this.props.trail);}}>         
                 <div className="trail-img"><img src={this.props.trail.imgSmall} alt={this.props.trail.name}/></div>
                 <div className="trail-details">
                     <h3>{this.props.trail.name}</h3>

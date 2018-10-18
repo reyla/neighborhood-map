@@ -349,18 +349,23 @@ class App extends Component {
     sidebar.getAttribute('aria-expanded') === 'false' ? sidebar.setAttribute('aria-expanded', 'true') :	sidebar.setAttribute('aria-expanded', 'false')
   }
 
-  /* this function doesn't seem to work :( 
   /* when user clicks on list item in sidebar */
-  listClick = (item) => {
-    this.state.markers.forEach(marker => {
-      if (item.key === marker.id) {
+  listClick = (event, trail) => {
+    const { map, infowindow, markers } = this.state;
+    console.log(this.state);
+    console.log(event, trail);
+    console.log(this.state.markers);
+    markers.forEach(marker => {
+      if (trail.id === marker.id) {
+        console.log(trail, marker);
         // pretend someone clicked on the marker icon
-        window.google.maps.event.trigger(marker, 'click')
+        infowindow.setContent({ content: "test" });
+        infowindow.open(map, marker); // this is throwing an error, but we're almost there!
       }
-    })
+    });
     // force close the sidebar
-    this.handleMenuClick()
-  }
+    this.handleMenuClick();
+  };
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
   changeMaxLength = (value) => {
