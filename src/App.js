@@ -37,6 +37,8 @@ class App extends Component {
     isSidebarOpen: false,
     maxLength: 20,
     markers: [],
+    map: null,
+    infowindow: null,
     currentTrails: [],
     origTrails: [
       {
@@ -289,6 +291,10 @@ class App extends Component {
     let markersArray = this.state.currentTrails.map(thisTrail => {
       // create a generic infowindow
       let infowindow = new window.google.maps.InfoWindow({ maxWidth: 300 })
+      this.setState({
+        map: map,
+        infowindow: infowindow
+      });      
       // create content for infowindow
       let image = thisTrail.imgSmall
       let contentString = '<div id="popup">' + 
