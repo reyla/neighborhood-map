@@ -72,25 +72,11 @@ class App extends Component {
       infowindow: infowindow
     })
     this.setState({ map: map })
-    let bounds = new window.google.maps.LatLngBounds();
+    let bounds = new window.google.maps.LatLngBounds()
     // Loop over each trail in state array to create dynamic markers
     let markersArray = this.state.currentTrails.map(thisTrail => {     
       // create content for infowindow
-      let image = thisTrail.imgSmall
-      let contentString = '<div id="popup">' + 
-          '<img src="' + image + '"/>' + 
-          '<h3 id="trailName">' + 
-          `${thisTrail.name}` +
-          '</h3>' +
-          '<p id="trailInfo">Length: ' +
-          `${thisTrail.length}` +
-          ' miles<br/> Difficulty: ' +
-          `${thisTrail.difficulty}` +
-          '</p><p id="trailSummary">' + 
-          `${thisTrail.summary}` +
-          '</p> <a href="' +
-          `${thisTrail.url}` +
-          '">Learn more on HikingProject.com</a></div>'
+      let content = this.buildInfowindowContent(thisTrail)
       // create map marker for the trail   
       let marker = new window.google.maps.Marker({
           position: {lat: thisTrail.latitude, lng: thisTrail.longitude},
@@ -104,7 +90,7 @@ class App extends Component {
       // click on marker to see location info
       marker.addListener('click', function() {
           // change the content of infowindow
-          infowindow.setContent(contentString)
+          infowindow.setContent(content)
           // center the selected marker on the map
           map.panTo(marker.getPosition())
           // open infowindow
@@ -119,6 +105,25 @@ class App extends Component {
     console.log('Current markers:', this.state.markers)
   }
   
+  /* create infowindow content for map view when marker is clicked */
+  buildInfowindowContent(marker) {
+    let image = marker.imgSmall
+    return '<div id="popup">' + 
+          '<img src="' + image + '"/>' + 
+          '<h3 id="trailName">' + 
+          `${marker.name}` +
+          '</h3>' +
+          '<p id="trailInfo">Length: ' +
+          `${marker.length}` +
+          ' miles<br/> Difficulty: ' +
+          `${marker.difficulty}` +
+          '</p><p id="trailSummary">' + 
+          `${marker.summary}` +
+          '</p> <a href="' +
+          `${marker.url}` +
+          '">Learn more on HikingProject.com</a></div>'
+  }
+
   /* function that controls the sidebar opening */
   handleMenuClick() {
     this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
@@ -136,8 +141,10 @@ class App extends Component {
     markers.forEach(marker => {
       if (trail.id === marker.id) {
         console.log('List item matches a marker:', trail, marker);
+        // create content for infowindow
+        let content = this.buildInfowindowContent(marker)
         // pretend someone clicked on the marker icon
-        infowindow.setContent({ content: "test" });
+        infowindow.setContent(content);
         infowindow.open(map, marker); // this is throwing an error, but we're almost there!
       }
     });
