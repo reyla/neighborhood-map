@@ -97,6 +97,8 @@ class App extends Component {
       marker.addListener("click", function() {
         // change the content of infowindow
         infowindow.setContent(content);
+        // set position of infowindow
+        infowindow.setPosition(marker.position);
         // center the selected marker on the map
         map.setCenter(marker.position);
         // open infowindow
@@ -160,6 +162,8 @@ class App extends Component {
         // create content for infowindow
         let content = this.buildInfowindowContent(marker);
         infowindow.setContent(content);
+        // set position of infowindow
+        infowindow.setPosition(marker.position);
         // open infowindow
         infowindow.open(map, marker); // causes an error!
         // bounce the marker icon for 2 seconds
