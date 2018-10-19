@@ -98,7 +98,7 @@ class App extends Component {
         // change the content of infowindow
         infowindow.setContent(content);
         // center the selected marker on the map
-        map.setCenter({ lat: marker.latitude, lng: marker.longitude });
+        map.setCenter(marker.position);
         // open infowindow
         infowindow.open(map, marker);
         // bounce the marker icon for 2 seconds
