@@ -31,8 +31,8 @@ body {
   left: 0px;
   margin: 0 0.5em;
   padding: 0.5em;
-  color: #f7eaf3;
-  background: #0c2448;
+  color: #0c2448;
+  background: #5ebbf1;
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -47,8 +47,7 @@ body {
 #sidebarButton:hover,
 #sidebarButton:focus {
   background: #6cd86c;
-  color: #000;
-  outline: 1px solid #fff;
+  outline: 1px solid #0c2448;
 }
 
 #sidebar {
@@ -58,7 +57,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #6cd86c;
+  background: #fff;
   color: #0c2448;
   overflow-x: hidden;
   padding: 0;
@@ -72,11 +71,11 @@ body {
 }
 
 #sidebar a:hover {
-  color: #fff;
+  color: #6cd86c;
 }
 
 #content {
-  padding: 20px;
+  padding: 0 20px 20px;
 }
 
 #trail-list-dynamic {
@@ -92,32 +91,49 @@ body {
   padding: 0 0 10px;
   text-align: left;
   width: 100%;
+  color: #0c2448;  
 }
 
 .trail-item {
   width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background: #6cd86c;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+}
+
+.trail-item:hover,
+.trail-item:focus {
+  background: #5ebbf1;
 }
 
 .trail-img {
-  width: 50%;
+  width: 100%;
   margin: 10px;
 }
 
 .trail-img img {
-  max-width: 300px;
+  height: auto;
 }
 
 .trail-details {
-  width: 50%;
+  width: 100%;
   margin: 10px;
+}
+
+.trail-details h3 {
+  text-decoration: underline;
 }
 
 #backButton {
   margin: 1em;
   padding: 0.5em;
-  background: #0c2448;
-  color: #fff;
+  background: #5ebbf1;
+  color: #0c2448;
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -131,8 +147,7 @@ body {
 
 #backButton:hover,
 #backButton:focus {
-  background: #fff;
-  color: #0c2448;
+  background: #6cd86c;
   outline: 1px solid #0c2448;
 }
 
