@@ -156,7 +156,7 @@ class App extends Component {
         // pretend someone clicked on the marker icon
         // console.log('List item matches a marker:', trail, marker);
         // center the selected marker on the map
-        map.setCenter({ lat: marker.latitude, lng: marker.longitude });
+        map.setCenter(marker.position);
         // create content for infowindow
         let content = this.buildInfowindowContent(marker);
         infowindow.setContent(content);
