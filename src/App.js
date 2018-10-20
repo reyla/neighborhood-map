@@ -107,7 +107,7 @@ class App extends Component {
         marker.setAnimation(window.google.maps.Animation.BOUNCE);
         setTimeout(() => marker.setAnimation(null), 2000);
       });
-      return thisTrail;
+      return marker;
     });
     this.setState({ markers: markersArray });
   };
@@ -154,9 +154,8 @@ class App extends Component {
     console.log("State:", this.state);
     console.log("Event:", event, "Trail:", trail);
     markers.forEach(marker => {
-      if (trail.id === marker.id) {
+      if (trail.id === marker.key) {
         // pretend someone clicked on the marker icon
-        // console.log('List item matches a marker:', trail, marker);
         // center the selected marker on the map
         map.setCenter(marker.position);
         // create content for infowindow
@@ -183,34 +182,18 @@ class App extends Component {
     let number = parseInt(trailLength);
     // update the maxLength state
     this.setState({ maxLength: number });
-    // update the currentTrails state
-    let updatedTrails = this.state.currentTrails.filter(trail => {
-      return trail.length <= this.state.maxLength;
-    });
-    this.setState({ currentTrails: updatedTrails });
-    // update the markers state
-    this.updateMarkers();
   };
 
-  /* hide map markers that don't correspond to maxlength selected */
   updateMarkers() {
-    // this function is broken, it sets markers array to 0 :(
-    // filter markers to pull out markers that don't have correct trail length
-    let markersToHide = this.state.markers.filter(marker => {
-      return marker.length > this.state.maxLength;
+    // update the markers
+    let updatedMarkers = this.state.markers.forEach(marker => {
+      if (marker.length > this.state.maxLength) {
+        console.log(marker.visible);
+        marker.setVisible(false); // this causes an error
+      }
     });
-    console.log("Markers we need to hide:", markersToHide);
-    // set bad markers to invisible
-    markersToHide.forEach(marker => {
-      return marker.setVisible(false);
-    });
-    console.log("Markers supposedly set to invisible:", markersToHide);
-    // exclude bad markers from current markers
-    let updatedMarkers = compareArrays(this.state.markers, markersToHide);
-    // update marker state
     this.setState({ markers: updatedMarkers });
-    console.log("The markers were supposedly updated:", this.state.markers);
-  }
+  };
 
   render() {
     return (
@@ -252,6 +235,7 @@ class App extends Component {
             markers={this.state.markers}
             maxLength={this.state.maxLength}
             onChangeMaxLength={this.changeMaxLength.bind(this)}
+            updateMarkers={this.updateMarkers.bind(this)}
             onListClick={this.listClick.bind(this)}
           />
         </div>
@@ -273,19 +257,6 @@ function loadScript(url) {
   script.defer = true;
   // put the new script tag before the first one that was found
   index.parentNode.insertBefore(script, index);
-}
-
-/* compare 2 arrays and subtract items in small array from large array */
-function compareArrays(lg, sm) {
-  const finalArray = [];
-  lg.forEach(e1 =>
-    sm.forEach(e2 => {
-      if (e1 !== e2) {
-        finalArray.push(e1);
-      }
-    })
-  );
-  return finalArray;
 }
 
 export default App;
