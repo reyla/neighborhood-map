@@ -46,12 +46,13 @@ class App extends Component {
         );
       })
       .catch(error => {
-        console.log("Error fetching trails." + error);
+        console.log("Error fetching trail data. " + error);
         this.setState({
           online: false,
           // if not online, use static trail data
           currentTrails: origTrails
         });
+        console.log('Current trails: ', this.state.currentTrails)
       });
   };
 
