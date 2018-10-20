@@ -181,6 +181,10 @@ class App extends Component {
   };
 
   updateMarkers = () => {
+    // reset all markers back to visible so that we start with 20 before filtering
+    this.state.markers.forEach(marker => {
+      marker.setVisible(true)
+    });
     // create new array of trails that don't meet maxLength criteria
     let trailsToHide = this.state.currentTrails.filter(trail => {
       return trail.length > this.state.maxLength;
