@@ -15,14 +15,14 @@ class Info extends React.Component {
       <div id="content">
         <h1>Hiking Trails Map</h1>
         <p>
-          This app displays hiking trails around Carrboro, NC. Trail
-          info is from{" "}
+          This app displays hiking trails around Carrboro, NC. Trail info is
+          from{" "}
           <a href="http://hikingproject.com" title="HikingProject.com">
             HikingProject.com
           </a>
           .
         </p>
-        <p id ="filter-label">Filter by maximum trail length.</p>
+        <p id="filter-label">Filter by maximum trail length.</p>
         <select
           aria-labelledby="filter-label"
           value={this.props.maxLength ? this.props.maxLength : "20"}
@@ -40,7 +40,11 @@ class Info extends React.Component {
         <ol id="trail-list-dynamic">
           {this.props.trails.map(trail => (
             <li key={trail.id}>
-              <Trail trail={trail} onClick={this.props.onListClick} />
+              <Trail
+                trail={trail}
+                onClick={this.props.onListClick}
+                online={this.props.online}
+              />
             </li>
           ))}
         </ol>

@@ -3,7 +3,6 @@ import Info from "./Info";
 import origTrails from "./OrigTrails";
 import "./App.css";
 import axios from "axios";
-import { Offline, Online } from "react-detect-offline";
 import staticmap from "./img/staticmap.png";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -16,7 +15,8 @@ class App extends Component {
     markers: [],
     map: null,
     infowindow: null,
-    currentTrails: []
+    currentTrails: [],
+    online: true
   };
 
   componentDidMount() {
@@ -48,6 +48,7 @@ class App extends Component {
       .catch(error => {
         console.log("Error fetching trails." + error);
         this.setState({
+          online: false,
           // if not online, use static trail data
           currentTrails: origTrails
         });
@@ -219,26 +220,34 @@ class App extends Component {
             onChangeMaxLength={this.changeMaxLength.bind(this)}
             updateMarkers={this.updateMarkers.bind(this)}
             onListClick={this.listClick.bind(this)}
+            online={this.state.online}
           />
         </div>
-        <Online>
-          <div id="map" aria-label="Hiking trails map" role="application" />
-        </Online>
-        <Offline>
-          <div id="offline">
-            <p id="offline-message">You are offline.</p>
-            <img src={staticmap} alt="Static map of Hiking Trails" />
-          </div>
-        </Offline>
+
+        <div id="map" aria-label="Hiking trails map" role="application" />
+
+        <div
+          id="offline"
+          style={{ visibility: this.state.online ? "hidden" : "visible" }}
+        >
+          <p id="offline-message">You are offline.</p>
+          <img
+            src={staticmap}
+            alt="Static map of Hiking Trails"
+            style={{ width: this.state.online ? 0 : "100%" }}
+          />
+        </div>
+
         <button
           id="sidebarButton"
           type="button"
-          style={{ visibility: this.state.isSidebarOpen ? "hidden" : "visible" }}
+          style={{
+            visibility: this.state.isSidebarOpen ? "hidden" : "visible"
+          }}
           onClick={this.handleMenuClick.bind(this)}
         >
           List View
         </button>
-        
       </main>
     );
   }

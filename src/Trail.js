@@ -1,5 +1,4 @@
 import React from "react";
-import { Online } from "react-detect-offline";
 
 class Trail extends React.Component {
   render() {
@@ -14,18 +13,22 @@ class Trail extends React.Component {
           <img src={this.props.trail.imgSmall} alt={this.props.trail.name} />
         </div>
         <div className="trail-details">
-          <h2 title="View trail on map" tabIndex="0">{this.props.trail.name}</h2>
+          <h2 title="View trail on map" tabIndex="0">
+            {this.props.trail.name}
+          </h2>
           <p>
             Length: {this.props.trail.length} miles
             <br />
             Difficulty: {this.props.trail.difficulty}
           </p>
           <p>{this.props.trail.summary}</p>
-          <Online>
-            <div>
-              <a href={this.props.trail.url}>Learn more on HikingProject.com</a>
-            </div>
-          </Online>
+
+          <a
+            href={this.props.trail.url}
+            style={{ visibility: this.props.online ? "hidden" : "visible" }}
+          >
+            Learn more on HikingProject.com
+          </a>
         </div>
       </div>
     );

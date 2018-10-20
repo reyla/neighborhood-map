@@ -26,8 +26,6 @@ React
 
 axios https://github.com/axios/axios
 
-react-detect-offline https://github.com/chrisbolin/react-detect-offline
-
 See more details in [package.json](package.json). 
 
 ## Sources
