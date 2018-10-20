@@ -199,13 +199,14 @@ class App extends Component {
         <div
           id="sidebar"
           style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}
-          aria-expanded="false"
-          aria-hidden="true"
+          aria-expanded="true"
+          aria-hidden="false"
         >
           <button
             id="backButton"
             type="button"
             onClick={this.handleMenuClick.bind(this)}
+            aria-label="Close sidebar"
           >
             Close
           </button>
@@ -221,17 +222,16 @@ class App extends Component {
           />
         </div>
         <Online>
-          <div id="map" aria-label="hiking trails map" role="application" />
+          <div id="map" aria-label="Hiking trails map" role="application" />
         </Online>
         <Offline>
           <div id="offline">
             <p id="offline-message">You are offline.</p>
-            <img src={staticmap} alt="Static Map of Hiking Trails" />
+            <img src={staticmap} alt="Static map of Hiking Trails" />
           </div>
         </Offline>
         <button
           id="sidebarButton"
-          autoFocus="True"
           type="button"
           style={{ visibility: this.state.isSidebarOpen ? "hidden" : "visible" }}
           onClick={this.handleMenuClick.bind(this)}

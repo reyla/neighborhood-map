@@ -13,7 +13,7 @@ class Info extends React.Component {
 
     return (
       <div id="content">
-        <h2>Hiking Trails Map</h2>
+        <h1>Hiking Trails Map</h1>
         <p>
           This app displays hiking trails around Carrboro, NC. Trail
           info is from{" "}
