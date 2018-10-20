@@ -43,6 +43,7 @@ class Info extends React.Component {
               <Trail
                 trail={trail}
                 onClick={this.props.onListClick}
+                checkDifficulty={this.props.checkDifficulty}
               />
             </li>
           ))}

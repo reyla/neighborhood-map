@@ -3,6 +3,8 @@ import Info from "./Info";
 import origTrails from "./OrigTrails";
 import "./App.css";
 import axios from "axios";
+import blue from "./img/blue-inter.svg";
+import greenBlue from "./img/greenBlue-easyint.svg"; 
 import staticmap from "./img/staticmap.png";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -52,7 +54,7 @@ class App extends Component {
           // if not online, use static trail data
           currentTrails: origTrails
         });
-        console.log('Current trails: ', this.state.currentTrails)
+        console.log("Current trails: ", this.state.currentTrails);
       });
   };
 
@@ -112,6 +114,7 @@ class App extends Component {
   /* create infowindow content for map view when marker is clicked */
   buildInfowindowContent(marker) {
     let image = marker.imgSmall;
+    let difficulty = this.checkDifficulty(marker);
     return (
       '<div id="popup">' +
       '<img src="' +
@@ -123,7 +126,7 @@ class App extends Component {
       '<p id="trailInfo">Length: ' +
       `${marker.length}` +
       " miles<br/> Difficulty: " +
-      `${marker.difficulty}` +
+      `${difficulty}` +
       '</p><p id="trailSummary">' +
       `${marker.summary}` +
       '</p> <a href="' +
@@ -183,7 +186,7 @@ class App extends Component {
   updateMarkers = () => {
     // reset all markers back to visible so that we start with 20 before filtering
     this.state.markers.forEach(marker => {
-      marker.setVisible(true)
+      marker.setVisible(true);
     });
     // create new array of trails that don't meet maxLength criteria
     let trailsToHide = this.state.currentTrails.filter(trail => {
@@ -197,6 +200,18 @@ class App extends Component {
         }
       })
     );
+  };
+
+  /* trail difficulty is provided by api as names of colors
+   * this function changes that to appropriate description */
+  checkDifficulty = trail => {
+    if (trail.difficulty === "blue") {
+      return 'Intermediate'
+      /* return `<img src="${blue}"/>`; */ // shows as code
+    } else {
+      return 'Easy/Intermediate'
+      /* return `<img src="${greenBlue}"/>`; */ // shows as code
+    }
   };
 
   render() {
@@ -225,6 +240,7 @@ class App extends Component {
             onChangeMaxLength={this.changeMaxLength.bind(this)}
             updateMarkers={this.updateMarkers.bind(this)}
             onListClick={this.listClick.bind(this)}
+            checkDifficulty={this.checkDifficulty.bind(this)}
           />
         </div>
 

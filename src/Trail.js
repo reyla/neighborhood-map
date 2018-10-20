@@ -17,17 +17,12 @@ class Trail extends React.Component {
             {this.props.trail.name}
           </h2>
           <p>
-            Length: {this.props.trail.length} miles
-            <br />
-            Difficulty: {this.props.trail.difficulty}
+            Length: {this.props.trail.length} miles <br />
+            Difficulty: {this.props.checkDifficulty(this.props.trail)}
           </p>
           <p>{this.props.trail.summary}</p>
 
-          <a
-            href={this.props.trail.url}
-          >
-            Learn more on HikingProject.com
-          </a>
+          <a href={this.props.trail.url}>Learn more on HikingProject.com</a>
         </div>
       </div>
     );
