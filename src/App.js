@@ -225,7 +225,6 @@ class App extends Component {
             onChangeMaxLength={this.changeMaxLength.bind(this)}
             updateMarkers={this.updateMarkers.bind(this)}
             onListClick={this.listClick.bind(this)}
-            online={this.state.online}
           />
         </div>
 

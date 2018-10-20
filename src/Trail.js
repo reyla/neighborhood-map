@@ -25,7 +25,6 @@ class Trail extends React.Component {
 
           <a
             href={this.props.trail.url}
-            style={{ visibility: this.props.online ? "hidden" : "visible" }}
           >
             Learn more on HikingProject.com
           </a>
