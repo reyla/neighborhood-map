@@ -4,7 +4,7 @@ This React project uses Google maps API and REI's Hiking Project API to show hik
 
 Click on map marker icons to see more details about the trail.
 
-Click on "List View" button to open the sidebar and see a text list of trails. You can filter them by maximum length of the trail.
+Use the filter option in sidebar to show results based on maximum trail length.
 
 ## How To Run
 
@@ -16,11 +16,9 @@ In your project directory, install all project dependencies with `npm install`.
 
 To start the development server, use `npm start`. It should automatically navigate your web browser to http://localhost:3000
 
-To create a production build, use `npm run build`. The service worker will not work unless it is a production build.
-Then start the local server:
-`npm install -g serve`
-`serve -s build`
-Navigate your web browser to http://localhost:5000
+To create a production build, use `npm run build` and then `serve -s build`. If you do not have the npm server installed, you may need to type `npm install -g serve`. Navigate your web browser to http://localhost:5000.
+
+Note: The service worker will not work unless it is a production build.
 
 ## Dependencies
 
