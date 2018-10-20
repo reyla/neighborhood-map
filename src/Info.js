@@ -2,6 +2,12 @@ import React from "react";
 import Trail from "./Trail";
 
 class Info extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.maxLength !== prevProps.maxLength) {
+      this.props.updateMarkers()
+    }
+  }
+
   render() {
     const { onChangeMaxLength } = this.props;
 
