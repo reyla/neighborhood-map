@@ -162,10 +162,10 @@ class App extends Component {
         // set position of infowindow
         infowindow.setPosition(marker.position);
         // open infowindow
-        infowindow.open(map, marker); // causes an error!
+        infowindow.open(map, marker);
         // bounce the marker icon for 2 seconds
-        marker.setAnimation(window.google.maps.Animation.BOUNCE)
-        setTimeout(() => marker.setAnimation(null), 2000)
+        marker.setAnimation(window.google.maps.Animation.BOUNCE);
+        setTimeout(() => marker.setAnimation(null), 2000);
       }
     });
     // force close the sidebar
@@ -174,24 +174,28 @@ class App extends Component {
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
   changeMaxLength = value => {
+    // const { currentTrails, markers} = this.state;
     // pull the desired max length from the value user selected
     let trailLength = value.target.value;
     // change from string to number
     let number = parseInt(trailLength);
     // update the maxLength state
     this.setState({ maxLength: number });
-  };
+    // once the Info component updates, the updateMarkers function is called
+  }
 
-  updateMarkers() {
-    // update the markers
-    let updatedMarkers = this.state.markers.forEach(marker => {
-      if (marker.length > this.state.maxLength) {
-        console.log(marker.visible);
-        marker.setVisible(false); // this causes an error
+  updateMarkers = () => {
+    // create new array of trails that don't meet maxLength criteria
+    let trailsToHide = this.state.currentTrails.filter(trail => {
+      return trail.length > this.state.maxLength;
+    }); 
+    // update their markers to be invisible
+    trailsToHide.forEach((trail) => this.state.markers.forEach((marker) => {
+      if (trail.id === marker.key) {
+        marker.setVisible(false);
       }
-    });
-    this.setState({ markers: updatedMarkers });
-  };
+    }));
+  }
 
   render() {
     return (
@@ -256,5 +260,7 @@ function loadScript(url) {
   // put the new script tag before the first one that was found
   index.parentNode.insertBefore(script, index);
 }
+
+
 
 export default App;
