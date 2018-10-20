@@ -95,7 +95,7 @@ class App extends Component {
         // set position of infowindow
         infowindow.setPosition(marker.position);
         // center the selected marker on the map
-        map.setCenter(marker.position);
+        map.panTo(marker.position);
         // open infowindow
         infowindow.open(map, marker);
         // bounce the marker icon for 2 seconds
@@ -150,7 +150,7 @@ class App extends Component {
       if (trail.id === marker.key) {
         // pretend someone clicked on the marker icon
         // center the selected marker on the map
-        map.setCenter(marker.position);
+        map.panTo(marker.position);
         // create content for infowindow
         let content = this.buildInfowindowContent(trail);
         infowindow.setContent(content);
