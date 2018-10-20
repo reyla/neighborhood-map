@@ -1,8 +1,3 @@
-/* TODO:
- * - when user selects new max length, filter map markers based on desired max length
- * - when user clicks on list item, the map marker should bounce
- */
-
 import React, { Component } from "react";
 import Info from "./Info";
 import origTrails from "./OrigTrails";
@@ -11,8 +6,8 @@ import axios from "axios";
 import { Offline, Online } from "react-detect-offline";
 import staticmap from "./img/staticmap.png";
 
-const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
-console.log(API_KEY)
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+console.log(API_KEY);
 
 class App extends Component {
   state = {
@@ -150,7 +145,7 @@ class App extends Component {
 
   /* when user clicks on list item in sidebar */
   listClick = (event, trail) => {
-    const { map, infowindow, markers} = this.state;
+    const { map, infowindow, markers } = this.state;
     markers.forEach(marker => {
       if (trail.id === marker.key) {
         // pretend someone clicked on the marker icon
@@ -174,7 +169,6 @@ class App extends Component {
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
   changeMaxLength = value => {
-    // const { currentTrails, markers} = this.state;
     // pull the desired max length from the value user selected
     let trailLength = value.target.value;
     // change from string to number
@@ -182,20 +176,22 @@ class App extends Component {
     // update the maxLength state
     this.setState({ maxLength: number });
     // once the Info component updates, the updateMarkers function is called
-  }
+  };
 
   updateMarkers = () => {
     // create new array of trails that don't meet maxLength criteria
     let trailsToHide = this.state.currentTrails.filter(trail => {
       return trail.length > this.state.maxLength;
-    }); 
+    });
     // update their markers to be invisible
-    trailsToHide.forEach((trail) => this.state.markers.forEach((marker) => {
-      if (trail.id === marker.key) {
-        marker.setVisible(false);
-      }
-    }));
-  }
+    trailsToHide.forEach(trail =>
+      this.state.markers.forEach(marker => {
+        if (trail.id === marker.key) {
+          marker.setVisible(false);
+        }
+      })
+    );
+  };
 
   render() {
     return (
@@ -260,7 +256,5 @@ function loadScript(url) {
   // put the new script tag before the first one that was found
   index.parentNode.insertBefore(script, index);
 }
-
-
 
 export default App;
