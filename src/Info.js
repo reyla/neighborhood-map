@@ -15,8 +15,8 @@ class Info extends React.Component {
       <div id="content">
         <h2>Hiking Trails Map</h2>
         <p>
-          This app displays hiking trails around Carrboro, NC. Hiking trail
-          information is pulled from{" "}
+          This app displays hiking trails around Carrboro, NC. Trail
+          info is from{" "}
           <a href="http://hikingproject.com" title="HikingProject.com">
             HikingProject.com
           </a>

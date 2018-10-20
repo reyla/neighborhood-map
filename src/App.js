@@ -11,7 +11,7 @@ console.log(API_KEY);
 
 class App extends Component {
   state = {
-    isSidebarOpen: false,
+    isSidebarOpen: true,
     maxLength: 20,
     markers: [],
     map: null,
@@ -196,6 +196,30 @@ class App extends Component {
   render() {
     return (
       <main>
+        <div
+          id="sidebar"
+          style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}
+          aria-expanded="false"
+          aria-hidden="true"
+        >
+          <button
+            id="backButton"
+            type="button"
+            onClick={this.handleMenuClick.bind(this)}
+          >
+            Close
+          </button>
+          <Info
+            trails={this.state.currentTrails.filter(trail => {
+              return trail.length <= this.state.maxLength;
+            })}
+            markers={this.state.markers}
+            maxLength={this.state.maxLength}
+            onChangeMaxLength={this.changeMaxLength.bind(this)}
+            updateMarkers={this.updateMarkers.bind(this)}
+            onListClick={this.listClick.bind(this)}
+          />
+        </div>
         <Online>
           <div id="map" aria-label="hiking trails map" role="application" />
         </Online>
@@ -209,34 +233,12 @@ class App extends Component {
           id="sidebarButton"
           autoFocus="True"
           type="button"
+          style={{ visibility: this.state.isSidebarOpen ? "hidden" : "visible" }}
           onClick={this.handleMenuClick.bind(this)}
         >
           List View
         </button>
-        <div
-          id="sidebar"
-          style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}
-          aria-expanded="false"
-          aria-hidden="true"
-        >
-          <button
-            id="backButton"
-            type="button"
-            onClick={this.handleMenuClick.bind(this)}
-          >
-            Map View
-          </button>
-          <Info
-            trails={this.state.currentTrails.filter(trail => {
-              return trail.length <= this.state.maxLength;
-            })}
-            markers={this.state.markers}
-            maxLength={this.state.maxLength}
-            onChangeMaxLength={this.changeMaxLength.bind(this)}
-            updateMarkers={this.updateMarkers.bind(this)}
-            onListClick={this.listClick.bind(this)}
-          />
-        </div>
+        
       </main>
     );
   }

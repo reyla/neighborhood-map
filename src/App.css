@@ -14,6 +14,7 @@ body {
  */
 #popup {
   margin: 0 auto;
+  height: auto;
 }
 
 #popup img {
@@ -42,6 +43,7 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
+  visibility: hidden;
 }
 
 #sidebarButton:hover,
@@ -52,8 +54,8 @@ body {
 
 #sidebar {
   height: 100%;
-  width: 0;
-  max-width: 400px;
+  width: 100%;
+  max-width: 500px;
   position: fixed;
   z-index: 1;
   top: 0;
