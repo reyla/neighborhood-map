@@ -9,13 +9,12 @@ class Trail extends React.Component {
         onClick={evt => {
           this.props.onClick(evt, this.props.trail);
         }}
-        role="button"
       >
         <div className="trail-img">
           <img src={this.props.trail.imgSmall} alt={this.props.trail.name} />
         </div>
         <div className="trail-details">
-          <h2 title="View trail on map">{this.props.trail.name}</h2>
+          <h2 title="View trail on map" tabindex="0">{this.props.trail.name}</h2>
           <p>
             Length: {this.props.trail.length} miles
             <br />

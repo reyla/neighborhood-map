@@ -22,7 +22,9 @@ class Info extends React.Component {
           </a>
           .
         </p>
+        <p id ="filter-label">Filter by maximum trail length.</p>
         <select
+          aria-labelledby="filter-label"
           value={this.props.maxLength ? this.props.maxLength : "20"}
           onChange={value => {
             onChangeMaxLength(value);
