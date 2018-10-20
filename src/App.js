@@ -150,24 +150,22 @@ class App extends Component {
 
   /* when user clicks on list item in sidebar */
   listClick = (event, trail) => {
-    const { map, infowindow, markers } = this.state;
-    console.log("State:", this.state);
-    console.log("Event:", event, "Trail:", trail);
+    const { map, infowindow, markers} = this.state;
     markers.forEach(marker => {
       if (trail.id === marker.key) {
         // pretend someone clicked on the marker icon
         // center the selected marker on the map
         map.setCenter(marker.position);
         // create content for infowindow
-        let content = this.buildInfowindowContent(marker);
+        let content = this.buildInfowindowContent(trail);
         infowindow.setContent(content);
         // set position of infowindow
         infowindow.setPosition(marker.position);
         // open infowindow
         infowindow.open(map, marker); // causes an error!
         // bounce the marker icon for 2 seconds
-        // marker.setAnimation(window.google.maps.Animation.BOUNCE)
-        // setTimeout(() => marker.setAnimation(null), 2000)
+        marker.setAnimation(window.google.maps.Animation.BOUNCE)
+        setTimeout(() => marker.setAnimation(null), 2000)
       }
     });
     // force close the sidebar
