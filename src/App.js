@@ -117,8 +117,9 @@ class App extends Component {
       '<div id="popup">' +
       '<img src="' +
       image +
-      '"/>' +
-      '<h3 id="trailName">' +
+      '" alt="' +
+      `${marker.name}` + 
+      ' photo" /><h3 id="trailName">' +
       `${marker.name}` +
       "</h3>" +
       '<p id="trailInfo">Length: ' +
