@@ -18,7 +18,10 @@ To start the development server, use `npm start`. It should automatically naviga
 
 To create a production build, use `npm run build` and then `serve -s build`. If you do not have the npm server installed, you may need to type `npm install -g serve`. Navigate your web browser to http://localhost:5000.
 
-Note: The service worker will not work unless it is a production build.
+Notes: 
+
+The service worker will not work unless it is a production build.
+You will need to add your own Google API key to the App.js file.
 
 ## Dependencies
 
