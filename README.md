@@ -8,15 +8,13 @@ Use the filter option in sidebar to show results based on maximum trail length.
 
 ## How To Run
 
-View demo version at https://reyla.github.io/neighborhood-map/
+View demo version (production build) at https://reyla.github.io/neighborhood-map/
 
 You can clone this project using https://github.com/reyla/neighborhood-map.git
 
 In your project directory, install all project dependencies with `npm install`.
 
 To start the development server, use `npm start`. It should automatically navigate your web browser to http://localhost:3000
-
-To create a production build, use `npm run build` and then `serve -s build`. If you do not have the npm server installed, you may need to type `npm install -g serve`. Navigate your web browser to http://localhost:5000.
 
 Notes: 
 
