@@ -3,12 +3,9 @@ import Info from "./Info";
 import origTrails from "./OrigTrails";
 import "./App.css";
 import axios from "axios";
-import blue from "./img/blue-inter.svg";
-import greenBlue from "./img/greenBlue-easyint.svg"; 
 import staticmap from "./img/staticmap.png";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
-console.log(API_KEY);
 
 class App extends Component {
   state = {
@@ -60,7 +57,7 @@ class App extends Component {
 
   renderMap = () => {
     loadScript(
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyDAKvy5lm0G0jkaL6-OwZRqZtv9d4Cgqqw&callback=initMap"
+      "https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&callback=initMap"
     );
     window.initMap = this.initMap;
   };
