@@ -22,7 +22,7 @@ class Info extends React.Component {
           </a>
           .
         </p>
-        
+
         <p id="filter-label">Filter by maximum trail length.</p>
         <select
           aria-labelledby="filter-label"

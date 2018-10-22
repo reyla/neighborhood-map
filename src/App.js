@@ -260,20 +260,19 @@ class App extends Component {
           />
         </div>
 
-        <img
-          src={staticmap}
-          alt="Static map of Hiking Trails"
-          style={{ width: this.props.online ? 0 : "100%" }}
-        />
-        
-          <p style={{ visibility: this.props.online ? "hidden" : "visible" }} className="offline-message">Sorry, we had trouble connecting you. Please check your internet connection and try again.</p>
-          
-        
+       
+
         <div
           id="map"
           aria-label="Hiking trails map"
           role="application"
-          style={{ height: this.props.online ? "100vh" : 0 }}
+          style={{ height: this.state.online ? "100vh" : 0 }}
+        />
+
+         <img
+          src={staticmap}
+          alt="Static map of Hiking Trails"
+          className={this.state.online ? "hidden" : null}
         />
 
         <button
@@ -286,6 +285,13 @@ class App extends Component {
         >
           List View
         </button>
+        <span
+          id="offline-message"
+          className={this.state.online ? "hidden" : null}
+        >
+          Sorry, we had trouble connecting you. Please check your internet
+          connection and try again.
+        </span>
       </main>
     );
   }
