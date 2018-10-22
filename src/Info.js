@@ -26,7 +26,7 @@ class Info extends React.Component {
           id="offline"
           style={{ visibility: this.props.online ? "hidden" : "visible" }}
         >
-          <p class="offline-message">Sorry, we had trouble connecting you. Please check your internet connection and try again.</p>
+          <p className="offline-message">Sorry, we had trouble connecting you. Please check your internet connection and try again.</p>
           
         </div>
         <p id="filter-label">Filter by maximum trail length.</p>

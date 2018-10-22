@@ -57,13 +57,17 @@ class App extends Component {
   };
 
   renderMap = () => {
-    const testUrl = "https://maps.googleapis.com/maps/api/staticmap?size=600x500&maptype=roadmap&markers=color:red%7C35.9259,-79.0323&key=" + API_KEY
+    const testUrl =
+      "https://maps.googleapis.com/maps/api/staticmap?size=600x500&maptype=roadmap&markers=color:red%7C35.9259,-79.0323&key=" +
+      API_KEY;
     // make sure we can connect to google using the API key
     axios
       .get(testUrl)
       .then(() => {
         loadScript(
-        "https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&callback=initMap"
+          "https://maps.googleapis.com/maps/api/js?key=" +
+            API_KEY +
+            "&callback=initMap"
         );
         window.initMap = this.initMap;
       })
@@ -72,7 +76,7 @@ class App extends Component {
         this.setState({
           online: false
         });
-      });    
+      });
   };
 
   initMap = () => {
@@ -130,7 +134,7 @@ class App extends Component {
       '<img src="' +
       image +
       '" alt="' +
-      `${marker.name}` + 
+      `${marker.name}` +
       ' photo" /><h3 id="trailName">' +
       `${marker.name}` +
       "</h3>" +
@@ -217,10 +221,10 @@ class App extends Component {
    * this function changes that to appropriate description */
   checkDifficulty = trail => {
     if (trail.difficulty === "blue") {
-      return 'Intermediate'
+      return "Intermediate";
       /* return `<img src="${blue}"/>`; */ // shows as code
     } else {
-      return 'Easy/Intermediate'
+      return "Easy/Intermediate";
       /* return `<img src="${greenBlue}"/>`; */ // shows as code
     }
   };
@@ -256,12 +260,18 @@ class App extends Component {
           />
         </div>
 
-        <div id="map" aria-label="Hiking trails map" role="application" />
         <img
-            src={staticmap}
-            alt="Static map of Hiking Trails"
-            style={{ width: this.props.online ? 0 : "100%" }}
-          />
+          src={staticmap}
+          alt="Static map of Hiking Trails"
+          style={{ width: this.props.online ? 0 : "100%" }}
+        />
+
+        <div
+          id="map"
+          aria-label="Hiking trails map"
+          role="application"
+          style={{ height: this.props.online ? "100vh" : 0 }}
+        />
 
         <button
           id="sidebarButton"
