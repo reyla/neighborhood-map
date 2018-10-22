@@ -58,11 +58,12 @@ class App extends Component {
 
   renderMap = () => {
     const testUrl = "https://maps.googleapis.com/maps/api/staticmap?size=600x500&maptype=roadmap&markers=color:red%7C35.9259,-79.0323&key=" + API_KEY
+    // make sure we can connect to google using the API key
     axios
       .get(testUrl)
       .then(() => {
         loadScript(
-      "https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&callback=initMap"
+        "https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&callback=initMap"
         );
         window.initMap = this.initMap;
       })
@@ -247,6 +248,7 @@ class App extends Component {
             })}
             markers={this.state.markers}
             maxLength={this.state.maxLength}
+            online={this.state.online}
             onChangeMaxLength={this.changeMaxLength.bind(this)}
             updateMarkers={this.updateMarkers.bind(this)}
             onListClick={this.listClick.bind(this)}
@@ -255,18 +257,11 @@ class App extends Component {
         </div>
 
         <div id="map" aria-label="Hiking trails map" role="application" />
-
-        <div
-          id="offline"
-          style={{ visibility: this.state.online ? "hidden" : "visible" }}
-        >
-          <p id="offline-message">You are offline.</p>
-          <img
+        <img
             src={staticmap}
             alt="Static map of Hiking Trails"
-            style={{ width: this.state.online ? 0 : "100%" }}
+            style={{ width: this.props.online ? 0 : "100%" }}
           />
-        </div>
 
         <button
           id="sidebarButton"

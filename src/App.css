@@ -162,10 +162,7 @@ body {
 
 /* Offline Elements */
 
-#offline-message {
-  position: absolute;
-  top: 20px;
-  left: 0px;
+.offline-message {
   margin: 0 0.5em;
   padding: 0.5em;
   font-family: "Roboto", sans-serif;
