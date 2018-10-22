@@ -1,3 +1,6 @@
+// TODO: in checkDifficulty function, use image instead of text. 
+// I tried return `<img src="${blue}"/>`; but didn't work.
+
 import React, { Component } from "react";
 import MapArea from "./MapArea";
 import Info from "./Info";
@@ -216,15 +219,14 @@ class App extends Component {
     );
   };
 
-  /* trail difficulty is provided by api as names of colors
-   * this function changes that to appropriate description */
+  /* trail difficulty is provided by api as names of colors -
+   * this function changes that to appropriate description. 
+   * There are more difficulty options but not in this data set. */
   checkDifficulty = trail => {
     if (trail.difficulty === "blue") {
       return "Intermediate";
-      /* return `<img src="${blue}"/>`; */ // shows as code
     } else {
       return "Easy/Intermediate";
-      /* return `<img src="${greenBlue}"/>`; */ // shows as code
     }
   };
 
