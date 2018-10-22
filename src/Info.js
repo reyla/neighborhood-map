@@ -12,45 +12,60 @@ class Info extends React.Component {
     const { onChangeMaxLength } = this.props;
 
     return (
-      <div id="content">
-        <h1>Hiking Trails Map</h1>
-        <p>
-          This app displays hiking trails around Carrboro, NC. Trail info is
-          from{" "}
-          <a href="http://hikingproject.com" title="HikingProject.com">
-            HikingProject.com
-          </a>
-          .
-        </p>
+      <section
+        id="sidebar"
+        style={{ width: this.props.isSidebarOpen ? "100%" : 0 }}
+        aria-expanded="true"
+        aria-hidden="false"
+      >
+        <div id="content">
+          <h1>Hiking Trails Map</h1>
+          <p>
+            This app displays hiking trails around Carrboro, NC. Trail info is
+            from{" "}
+            <a href="http://hikingproject.com" title="HikingProject.com">
+              HikingProject.com
+            </a>
+            .
+          </p>
 
-        <p id="filter-label">Filter by maximum trail length.</p>
-        <select
-          aria-labelledby="filter-label"
-          value={this.props.maxLength ? this.props.maxLength : "20"}
-          onChange={value => {
-            onChangeMaxLength(value);
-          }}
+          <p id="filter-label">Filter by maximum trail length.</p>
+          <select
+            aria-labelledby="filter-label"
+            value={this.props.maxLength ? this.props.maxLength : "20"}
+            onChange={value => {
+              onChangeMaxLength(value);
+            }}
+          >
+            <option value="selectMaxLength">Select max length...</option>
+            <option value="20">All Results</option>
+            <option value="3">Max 3 miles</option>
+            <option value="5">Max 5 miles</option>
+            <option value="7">Max 7 miles</option>
+          </select>
+          <p>Currently showing {this.props.trails.length} results.</p>
+          <ol id="trail-list-dynamic">
+            {this.props.trails.map(trail => (
+              <li key={trail.id}>
+                <Trail
+                  trail={trail}
+                  onClick={this.props.onListClick}
+                  checkDifficulty={this.props.checkDifficulty}
+                  online={this.props.online}
+                />
+              </li>
+            ))}
+          </ol>
+        </div>
+        <button
+          id="backButton"
+          type="button"
+          onClick={this.handleMenuClick}
+          aria-label="Close sidebar"
         >
-          <option value="selectMaxLength">Select max length...</option>
-          <option value="20">All Results</option>
-          <option value="3">Max 3 miles</option>
-          <option value="5">Max 5 miles</option>
-          <option value="7">Max 7 miles</option>
-        </select>
-        <p>Currently showing {this.props.trails.length} results.</p>
-        <ol id="trail-list-dynamic">
-          {this.props.trails.map(trail => (
-            <li key={trail.id}>
-              <Trail
-                trail={trail}
-                onClick={this.props.onListClick}
-                checkDifficulty={this.props.checkDifficulty}
-                online={this.props.online}
-              />
-            </li>
-          ))}
-        </ol>
-      </div>
+          Close
+        </button>
+      </section>
     );
   }
 }

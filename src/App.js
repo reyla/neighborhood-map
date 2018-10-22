@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import MapArea from "./MapArea";
 import Info from "./Info";
 import origTrails from "./OrigTrails";
 import "./App.css";
 import axios from "axios";
-import staticmap from "./img/staticmap.png";
 
 const API_KEY = "AIzaSyDAKvy5lm0G0jkaL6-OwZRqZtv9d4Cgqqw";
 // const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -231,61 +231,26 @@ class App extends Component {
   render() {
     return (
       <main>
-        <div
-          id="sidebar"
-          style={{ width: this.state.isSidebarOpen ? "100%" : 0 }}
-          aria-expanded="true"
-          aria-hidden="false"
-        >
-          <button
-            id="backButton"
-            type="button"
-            onClick={this.handleMenuClick.bind(this)}
-            aria-label="Close sidebar"
-          >
-            Close
-          </button>
-          <Info
-            trails={this.state.currentTrails.filter(trail => {
-              return trail.length <= this.state.maxLength;
-            })}
-            markers={this.state.markers}
-            maxLength={this.state.maxLength}
-            online={this.state.online}
-            onChangeMaxLength={this.changeMaxLength.bind(this)}
-            updateMarkers={this.updateMarkers.bind(this)}
-            onListClick={this.listClick.bind(this)}
-            checkDifficulty={this.checkDifficulty.bind(this)}
-          />
-        </div>
-
-        <div
-          id="map"
-          aria-label="Hiking trails map"
-          role="application"
-          style={{ height: this.state.online ? "100vh" : 0 }}
+        <Info
+          trails={this.state.currentTrails.filter(trail => {
+            return trail.length <= this.state.maxLength;
+          })}
+          markers={this.state.markers}
+          maxLength={this.state.maxLength}
+          online={this.state.online}
+          isSidebarOpen={this.state.isSidebarOpen}
+          onChangeMaxLength={this.changeMaxLength.bind(this)}
+          updateMarkers={this.updateMarkers.bind(this)}
+          onListClick={this.listClick.bind(this)}
+          checkDifficulty={this.checkDifficulty.bind(this)}
+          handleMenuClick={this.handleMenuClick.bind(this)}
         />
 
-        <img
-          src={staticmap}
-          alt="Static map of Hiking Trails"
-          className={this.state.online ? "hidden" : "full"}
+        <MapArea
+          online={this.state.online}
+          isSidebarOpen={this.state.isSidebarOpen}
+          handleMenuClick={this.handleMenuClick.bind(this)}
         />
-
-        <button
-          id="sidebarButton"
-          type="button"
-          style={{
-            visibility: this.state.isSidebarOpen ? "hidden" : "visible"
-          }}
-          onClick={this.handleMenuClick.bind(this)}
-        >
-          List View
-        </button>
-        <p id="offline-message" className={this.state.online ? "hidden" : null}>
-          Sorry, we had trouble connecting you. Please check your internet
-          connection and try again.
-        </p>
       </main>
     );
   }
