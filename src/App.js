@@ -50,9 +50,8 @@ class App extends Component {
         this.setState({
           online: false,
           // if not online, use static trail data
-          currentTrails: origTrails
+          currentTrails: origTrails.origTrails
         });
-        console.log("Current trails: ", this.state.currentTrails);
       });
   };
 
@@ -260,8 +259,6 @@ class App extends Component {
           />
         </div>
 
-       
-
         <div
           id="map"
           aria-label="Hiking trails map"
@@ -269,10 +266,10 @@ class App extends Component {
           style={{ height: this.state.online ? "100vh" : 0 }}
         />
 
-         <img
+        <img
           src={staticmap}
           alt="Static map of Hiking Trails"
-          className={this.state.online ? "hidden" : null}
+          className={this.state.online ? "hidden" : "full"}
         />
 
         <button
@@ -285,13 +282,10 @@ class App extends Component {
         >
           List View
         </button>
-        <span
-          id="offline-message"
-          className={this.state.online ? "hidden" : null}
-        >
+        <p id="offline-message" className={this.state.online ? "hidden" : null}>
           Sorry, we had trouble connecting you. Please check your internet
           connection and try again.
-        </span>
+        </p>
       </main>
     );
   }
