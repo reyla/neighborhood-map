@@ -5,7 +5,7 @@ import "./App.css";
 import axios from "axios";
 import staticmap from "./img/staticmap.png";
 
-const API_KEY = "AIzaSyDAKvy5lm0G0jkaL6-OwZRqZtv9d4Cgqqw";
+const API_KEY = "AIzaSyDAKvy5lm0G0jkaL6-OwZRqZtv9d4Cgqq";
 // const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 class App extends Component {
@@ -57,10 +57,21 @@ class App extends Component {
   };
 
   renderMap = () => {
-    loadScript(
+    const testUrl = "https://maps.googleapis.com/maps/api/staticmap?size=600x500&maptype=roadmap&markers=color:red%7C35.9259,-79.0323&key=" + API_KEY
+    axios
+      .get(testUrl)
+      .then(() => {
+        loadScript(
       "https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&callback=initMap"
-    );
-    window.initMap = this.initMap;
+        );
+        window.initMap = this.initMap;
+      })
+      .catch(error => {
+        console.log("Error connecting to google maps api. " + error);
+        this.setState({
+          online: false
+        });
+      });    
   };
 
   initMap = () => {
