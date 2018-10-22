@@ -22,7 +22,7 @@ class Trail extends React.Component {
           </p>
           <p>{this.props.trail.summary}</p>
 
-          <a href={this.props.trail.url}>Learn more on HikingProject.com</a>
+          <a href={this.props.trail.url} style={{ visibility: this.props.online ? "hidden" : "visible" }}>Learn more on HikingProject.com</a>
         </div>
       </div>
     );

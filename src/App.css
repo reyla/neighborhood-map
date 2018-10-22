@@ -163,8 +163,13 @@ body {
 /* Offline Elements */
 
 .offline-message {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  right: 0;
   margin: 0 0.5em;
   padding: 0.5em;
+  width: 50%;
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;

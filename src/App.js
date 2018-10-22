@@ -5,7 +5,7 @@ import "./App.css";
 import axios from "axios";
 import staticmap from "./img/staticmap.png";
 
-const API_KEY = "AIzaSyDAKvy5lm0G0jkaL6-OwZRqZtv9d4Cgqq";
+const API_KEY = "AIzaSyDAKvy5lm0G0jkaL6-OwZRqZtv9d4Cgqqw";
 // const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 class App extends Component {
@@ -265,7 +265,10 @@ class App extends Component {
           alt="Static map of Hiking Trails"
           style={{ width: this.props.online ? 0 : "100%" }}
         />
-
+        
+          <p style={{ visibility: this.props.online ? "hidden" : "visible" }} className="offline-message">Sorry, we had trouble connecting you. Please check your internet connection and try again.</p>
+          
+        
         <div
           id="map"
           aria-label="Hiking trails map"

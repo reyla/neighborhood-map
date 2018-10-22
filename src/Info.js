@@ -22,13 +22,7 @@ class Info extends React.Component {
           </a>
           .
         </p>
-        <div
-          id="offline"
-          style={{ visibility: this.props.online ? "hidden" : "visible" }}
-        >
-          <p className="offline-message">Sorry, we had trouble connecting you. Please check your internet connection and try again.</p>
-          
-        </div>
+        
         <p id="filter-label">Filter by maximum trail length.</p>
         <select
           aria-labelledby="filter-label"
@@ -51,6 +45,7 @@ class Info extends React.Component {
                 trail={trail}
                 onClick={this.props.onListClick}
                 checkDifficulty={this.props.checkDifficulty}
+                online={this.props.online}
               />
             </li>
           ))}
