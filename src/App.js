@@ -8,8 +8,7 @@ import origTrails from "./OrigTrails";
 import "./App.css";
 import axios from "axios";
 
-const API_KEY = "AIzaSyDAKvy5lm0G0jkaL6-OwZRqZtv9d4Cgqqw";
-// const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 class App extends Component {
   state = {
