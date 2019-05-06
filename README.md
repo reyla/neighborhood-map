@@ -18,7 +18,8 @@ To start the development server, use `npm start`. It should automatically naviga
 
 Notes: 
 
-The service worker will not work unless it is a production build.
+The service worker will not work unless it is a production build. To create a production build, use `npm run build` and then `npm run deploy` which will publish the site according to your package.json file.
+
 You will need to add your own Google API key to the App.js file.
 
 ## Dependencies
