@@ -23,7 +23,7 @@ class Info extends React.Component {
           <button
           id="backButton"
           type="button"
-          onClick={this.handleMenuClick}
+          onClick={this.props.handleMenuClick}
           aria-label="Close sidebar"
         >
           Close
