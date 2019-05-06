@@ -48,11 +48,15 @@ body {
 }
 
 #sidebar a:hover {
-  color: #6cd86c;
+  color: white;
 }
 
 #content {
   padding: 0 20px 20px;
+}
+
+#filter-label,#results-number {
+  font-weight: 700;
 }
 
 #trail-list-dynamic {
@@ -74,12 +78,13 @@ body {
 .trail-item {
   display: flex;
   flex-wrap: wrap;
-  \min-width: 300px;
+  flex: 1 1 auto;
+  min-width: 300px;
   align-items: center;
   align-content: center;
   justify-content: center;
   margin: 0 auto;
-  background: #6cd86c;
+  background: #dfe6e9;
   cursor: pointer;
   border-radius: 6px;
   transition: background 250ms ease-in-out, transform 150ms ease;
@@ -87,7 +92,7 @@ body {
 
 .trail-item:hover,
 .trail-item:focus {
-  background: #5ebbf1;
+  background: #00cec9;
 }
 
 .trail-img {
@@ -112,16 +117,16 @@ body {
 
 /* Close button */
 #backButton {
-  margin: 1em;
-  padding: 0.5em;
-  background: #5ebbf1;
+  margin: 1em 0;
+  padding: 1em;
+  background: #dfe6e9;
   color: #0c2448;
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
   border: none;
   text-align: center;
-  transition: background 250ms ease-in-out, transform 150ms ease;
+  transition: background 200ms ease-in-out, transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
@@ -129,8 +134,7 @@ body {
 
 #backButton:hover,
 #backButton:focus {
-  background: #6cd86c;
-  outline: 1px solid #0c2448;
+  background: #00cec9;
 }
 
 /* List View button on map */

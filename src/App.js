@@ -147,7 +147,7 @@ class App extends Component {
       `${marker.summary}` +
       '</p> <a href="' +
       `${marker.url}` +
-      '">Learn more on HikingProject.com</a></div>'
+      '">Learn more at HikingProject.com</a></div>'
     );
   }
 

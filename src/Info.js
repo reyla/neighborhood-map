@@ -20,6 +20,14 @@ class Info extends React.Component {
       >
         <div id="content">
           <h1>Hiking Trails Map</h1>
+          <button
+          id="backButton"
+          type="button"
+          onClick={this.handleMenuClick}
+          aria-label="Close sidebar"
+        >
+          Close
+        </button>
           <p>
             This app displays hiking trails around Carrboro, NC. Trail info is
             from{" "}
@@ -29,7 +37,7 @@ class Info extends React.Component {
             .
           </p>
 
-          <p id="filter-label">Filter by maximum trail length.</p>
+          <p id="filter-label">Filter by maximum trail length:</p>
           <select
             aria-labelledby="filter-label"
             value={this.props.maxLength ? this.props.maxLength : "20"}
@@ -43,7 +51,7 @@ class Info extends React.Component {
             <option value="5">Max 5 miles</option>
             <option value="7">Max 7 miles</option>
           </select>
-          <p>Currently showing {this.props.trails.length} results.</p>
+          <p>Currently showing <span id="results-number">{this.props.trails.length}</span> results.</p>
           <ol id="trail-list-dynamic">
             {this.props.trails.map(trail => (
               <li key={trail.id}>
@@ -57,14 +65,6 @@ class Info extends React.Component {
             ))}
           </ol>
         </div>
-        <button
-          id="backButton"
-          type="button"
-          onClick={this.handleMenuClick}
-          aria-label="Close sidebar"
-        >
-          Close
-        </button>
       </section>
     );
   }
