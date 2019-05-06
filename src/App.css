@@ -70,7 +70,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 15px 0;
   padding: 0 0 10px;
-  text-align: left;
+  text-align: center;
   width: 100%;
   color: #0c2448;
 }
@@ -88,6 +88,7 @@ body {
   cursor: pointer;
   border-radius: 6px;
   transition: background 250ms ease-in-out, transform 150ms ease;
+  padding: 10px;
 }
 
 .trail-item:hover,
@@ -143,9 +144,9 @@ body {
   top: 100px;
   left: 0px;
   margin: 0 0.5em;
-  padding: 0.5em;
+  padding: 1em;
   color: #0c2448;
-  background: #5ebbf1;
+  background: #dfe6e9;
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -160,8 +161,7 @@ body {
 
 #sidebarButton:hover,
 #sidebarButton:focus {
-  background: #6cd86c;
-  outline: 1px solid #0c2448;
+  background: #00cec9;
 }
 
 /* Offline Elements */

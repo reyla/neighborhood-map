@@ -22,13 +22,14 @@ class Trail extends React.Component {
           </p>
           <p>{this.props.trail.summary}</p>
 
-          <a
+          
+        </div>
+        <a
             href={this.props.trail.url}
             className={this.props.online ? null : 'hidden'}
           >
-            Learn more on HikingProject.com
+            Learn more at HikingProject.com <i className="fas fa-external-link-square-alt"></i>
           </a>
-        </div>
       </div>
     );
   }
