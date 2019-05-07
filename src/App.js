@@ -33,7 +33,7 @@ class App extends Component {
       lat: "35.909967",
       lon: "-79.075229",
       maxDistance: 100,
-      maxResults: 20,
+      maxResults: 30,
       sort: "distance" /* quality or distance */
     };
     axios
