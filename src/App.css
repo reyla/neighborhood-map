@@ -3,6 +3,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-size: 16px;
 }
 
 #map {
@@ -176,7 +177,15 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
-  background: rgb(238, 126, 74);
+  background: #e17055;
+}
+
+#offline-message-sidebar {
+  padding: 0.5em;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  background: #e17055;
 }
 
 .full {
