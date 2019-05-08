@@ -225,15 +225,15 @@ class App extends Component {
     switch (trail.difficulty) {
       case "green":
         return "Easy";
-      case "greenblue":
+      case "greenBlue":
         return "Easy/Intermediate";
       case "blue":
         return "Intermediate";
-      case "blueblack":
+      case "blueBlack":
         return "Intermediate/Difficult";
       case "black":
         return "Difficult";
-      case "double black":
+      case "doubleBlack":
         return "Extremely Difficult";
       default:
         return "Unknown";
