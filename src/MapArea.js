@@ -1,5 +1,5 @@
 import React from "react";
-import staticmap from "./img/staticmap.png";
+import staticmap from "./img/staticmap2.PNG";
 
 class MapArea extends React.Component {
   render() {
