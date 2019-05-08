@@ -21,11 +21,11 @@ class Info extends React.Component {
         <div id="content">
           <h1>Hiking Trails Map</h1>
           <button
-          id="backButton"
-          type="button"
-          onClick={this.props.handleMenuClick}
-          aria-label="Close sidebar"
-        >
+            id="backButton"
+            type="button"
+            onClick={this.props.handleMenuClick}
+            aria-label="Close sidebar"
+          >
           Close
         </button>
           <p>

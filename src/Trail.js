@@ -10,7 +10,7 @@ class Trail extends React.Component {
         }}
       >
         <div className="trail-img">
-          <img src={this.props.trail.imgSmall} alt={this.props.trail.name} />
+          <img src={this.props.trail.imgSmall} alt={this.props.trail.name} title={this.props.trail.name}/>
         </div>
         <div className="trail-details">
           <h2 title="View trail on map" tabIndex="0">
