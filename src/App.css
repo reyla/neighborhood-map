@@ -34,6 +34,7 @@ a:focus {
   margin: 0 auto;
   height: auto;
   background: #fdcb6e;
+  padding: 10px;
 }
 
 #popup img {
