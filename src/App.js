@@ -33,7 +33,7 @@ class App extends Component {
       lat: "35.909967",
       lon: "-79.075229",
       maxDistance: 100,
-      maxResults: 30,
+      maxResults: 40,
       sort: "distance" /* quality or distance */
     };
     axios
@@ -218,14 +218,22 @@ class App extends Component {
     );
   };
 
-  /* trail difficulty is provided by api as names of colors -
-   * this function changes that to appropriate description. 
-   * There are more difficulty options but not in this data set. */
+  /* trail difficulty is provided by api as names of colors (dumb).
+   * this function changes the color to appropriate description. */
   checkDifficulty = trail => {
-    if (trail.difficulty === "blue") {
-      return "Intermediate";
-    } else {
-      return "Easy/Intermediate";
+    switch (trail.difficulty) {
+      case "green":
+        return "Easy";
+      case "greenblue":
+        return "Easy/Intermediate";
+      case "blue":
+        return "Intermediate";
+      case "blueblack":
+        return "Intermediate/Difficult";
+      case "black":
+        return "Difficult";
+      case "double black":
+        return "Extremely Difficult";
     }
   };
 
