@@ -49,7 +49,7 @@ class Info extends React.Component {
             <option value="20">All Results</option>
             <option value="3">Max 3 miles</option>
             <option value="5">Max 5 miles</option>
-            <option value="7">Max 7 miles</option>
+            <option value="8">Max 8 miles</option>
           </select>
           <p id="results-full-text">Showing <span id="results-number">{this.props.trails.length}</span> results</p>
           <p id="offline-message-sidebar" className={this.props.onlineREI ? "hidden" : null}>

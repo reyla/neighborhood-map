@@ -13,9 +13,9 @@ class Trail extends React.Component {
           <img src={this.props.trail.imgSmall} alt={this.props.trail.name} title={this.props.trail.name}/>
         </div>
         <div className="trail-details">
-          <h2 title="View trail on map" tabIndex="0">
+          <h3 title="View trail on map" tabIndex="0">
             {this.props.trail.name}
-          </h2>
+          </h3>
           <p>
             Length: {this.props.trail.length} miles <br />
             Difficulty: {this.props.checkDifficulty(this.props.trail)}
