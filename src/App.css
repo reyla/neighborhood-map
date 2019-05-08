@@ -4,6 +4,12 @@ body {
   margin: 0;
   padding: 0;
   font-size: 16px;
+  text-align: center;
+}
+
+h1 {
+  padding: 20px;
+  letter-spacing: 2px;
 }
 
 #map {
@@ -35,7 +41,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background: #fff;
+  background: #00b894;
   color: #0c2448;
   overflow-x: hidden;
   padding: 0;
@@ -56,7 +62,15 @@ body {
   padding: 0 20px 20px;
 }
 
-#filter-label,#results-number {
+#filter-label {
+  padding-top: 20px;
+}
+
+#results-full-text {
+  padding-top: 20px;
+}
+
+#results-number {
   font-weight: 700;
 }
 
@@ -67,7 +81,6 @@ body {
 }
 
 #trail-list-dynamic li {
-  border-bottom: 2px solid #fff;
   font-family: Arial, sans-serif;
   margin: 15px 0;
   padding: 0 0 10px;
@@ -85,16 +98,15 @@ body {
   align-content: center;
   justify-content: center;
   margin: 0 auto;
-  background: #dfe6e9;
+  background: #55efc4;
   cursor: pointer;
-  border-radius: 6px;
   transition: background 250ms ease-in-out, transform 150ms ease;
   padding: 10px;
 }
 
 .trail-item:hover,
 .trail-item:focus {
-  background: #00cec9;
+  background: #fdcb6e;
 }
 
 .trail-img {
@@ -119,9 +131,12 @@ body {
 
 /* Close button */
 #backButton {
-  margin: 1em 0;
-  padding: 1em;
-  background: #dfe6e9;
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  margin: 0 0.5em;
+  padding: .5em;
+  background: #55efc4;
   color: #0c2448;
   font-family: "Roboto", sans-serif;
   font-size: 18px;
@@ -136,18 +151,18 @@ body {
 
 #backButton:hover,
 #backButton:focus {
-  background: #00cec9;
+  background: #fdcb6e;
 }
 
 /* List View button on map */
 #sidebarButton {
   position: absolute;
-  top: 100px;
+  top: 20px;
   left: 0px;
   margin: 0 0.5em;
-  padding: 1em;
+  padding: .5em;
   color: #0c2448;
-  background: #dfe6e9;
+  background: #55efc4;
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -162,7 +177,7 @@ body {
 
 #sidebarButton:hover,
 #sidebarButton:focus {
-  background: #00cec9;
+  background: #fdcb6e;
 }
 
 /* Offline Elements */

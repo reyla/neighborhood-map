@@ -235,6 +235,8 @@ class App extends Component {
         return "Difficult";
       case "double black":
         return "Extremely Difficult";
+      default:
+        return "Unknown";
     }
   };
 
