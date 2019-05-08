@@ -13,7 +13,7 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 class App extends Component {
   state = {
     isSidebarOpen: true,
-    maxLength: 20,
+    maxLength: 40,
     markers: [],
     map: null,
     infowindow: null,
