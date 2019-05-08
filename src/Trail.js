@@ -26,7 +26,7 @@ class Trail extends React.Component {
         </div>
         <a
             href={this.props.trail.url}
-            className={this.props.online ? null : 'hidden'}
+            className={this.props.onlineREI ? null : 'hidden'}
           >
             Learn more at HikingProject.com <i className="fas fa-external-link-square-alt"></i>
           </a>

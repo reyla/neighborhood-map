@@ -18,7 +18,8 @@ class App extends Component {
     map: null,
     infowindow: null,
     currentTrails: [],
-    online: true
+    onlineGoogle: true,
+    onlineREI: true
   };
 
   componentDidMount() {
@@ -50,7 +51,7 @@ class App extends Component {
       .catch(error => {
         console.log("Error fetching trail data. " + error);
         this.setState({
-          online: false,
+          onlineREI: false,
           // if not online, use static trail data
           currentTrails: origTrails.origTrails
         });
@@ -75,7 +76,7 @@ class App extends Component {
       .catch(error => {
         console.log("Error connecting to google maps api. " + error);
         this.setState({
-          online: false
+          onlineGoogle: false
         });
       });
   };
@@ -246,7 +247,7 @@ class App extends Component {
           })}
           markers={this.state.markers}
           maxLength={this.state.maxLength}
-          online={this.state.online}
+          onlineREI={this.state.onlineREI}
           isSidebarOpen={this.state.isSidebarOpen}
           onChangeMaxLength={this.changeMaxLength.bind(this)}
           updateMarkers={this.updateMarkers.bind(this)}
@@ -256,7 +257,7 @@ class App extends Component {
         />
 
         <MapArea
-          online={this.state.online}
+          onlineGoogle={this.state.onlineGoogle}
           isSidebarOpen={this.state.isSidebarOpen}
           handleMenuClick={this.handleMenuClick.bind(this)}
         />

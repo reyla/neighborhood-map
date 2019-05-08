@@ -52,7 +52,7 @@ class Info extends React.Component {
             <option value="7">Max 7 miles</option>
           </select>
           <p>Showing <span id="results-number">{this.props.trails.length}</span> results.</p>
-          <p id="offline-message-sidebar" className={this.props.online ? "hidden" : null}>
+          <p id="offline-message-sidebar" className={this.props.onlineREI ? "hidden" : null}>
             Live data is not currently available. This trail data may be outdated.
           </p>
           <ol id="trail-list-dynamic">
@@ -62,7 +62,7 @@ class Info extends React.Component {
                   trail={trail}
                   onClick={this.props.onListClick}
                   checkDifficulty={this.props.checkDifficulty}
-                  online={this.props.online}
+                  onlineREI={this.props.onlineREI}
                 />
               </li>
             ))}

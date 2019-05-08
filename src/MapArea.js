@@ -9,12 +9,12 @@ class MapArea extends React.Component {
           id="map"
           aria-label="Hiking trails map"
           role="application"
-          style={{ height: this.props.online ? "100vh" : 0 }}
+          style={{ height: this.props.onlineGoogle ? "100vh" : 0 }}
         />
         <img
           src={staticmap}
           alt="Static map of Hiking Trails"
-          className={this.props.online ? "hidden" : "full"}
+          className={this.props.onlineGoogle ? "hidden" : "full"}
         />
         <button
           id="sidebarButton"
@@ -26,8 +26,8 @@ class MapArea extends React.Component {
         >
           List View
         </button>
-        <p id="offline-message" className={this.props.online ? "hidden" : null}>
-          Sorry, we had trouble connecting you. Please check your internet
+        <p id="offline-message" className={this.props.onlineGoogle ? "hidden" : null}>
+          Sorry, we had trouble connecting to Google Maps. Please check your internet
           connection and try again.
         </p>
       </section>
