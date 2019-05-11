@@ -19,7 +19,7 @@ class Info extends React.Component {
         aria-hidden="false"
       >
         <div id="content">
-          <h1>Hiking Trails Map</h1>
+          <h1>Carrboro Hiking Trails Map</h1>
           <button
             id="backButton"
             type="button"
@@ -29,7 +29,8 @@ class Info extends React.Component {
           View Map
         </button>
           <p>
-            This app displays hiking trails around Carrboro, NC. Trail info is
+            This app displays hiking trails around Carrboro, NC.</p>
+          <p>Trail info is
             from{" "}
             <a href="http://hikingproject.com" title="HikingProject.com">
               HikingProject.com
