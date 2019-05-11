@@ -1,5 +1,10 @@
-// TODO: in checkDifficulty function, use image instead of text. 
-// I tried return `<img src="${blue}"/>`; but didn't work.
+/* TODOs: 
+ * 1) in checkDifficulty function, use image instead of text. 
+ * I tried return `<img src="${blue}"/>`; but didn't work.
+ * 2) if trail has no image, use a default image
+ * 3) ability to sort trails by length or name?
+ */
+
 
 import React, { Component } from "react";
 import MapArea from "./MapArea";
@@ -148,7 +153,7 @@ class App extends Component {
       `${marker.summary}` +
       '</p> <a href="' +
       `${marker.url}` +
-      '">Learn more at HikingProject.com</a></div>'
+      ' target="_blank">Learn more at HikingProject.com</a></div>'
     );
   }
 
@@ -165,7 +170,7 @@ class App extends Component {
       : sidebar.setAttribute("aria-expanded", "false");
   }
 
-  /* when user clicks on list item in sidebar */
+  /* when user clicks on list item in sidebar, it opens infowindow */
   listClick = (event, trail) => {
     const { map, infowindow, markers } = this.state;
     markers.forEach(marker => {
@@ -201,7 +206,7 @@ class App extends Component {
   };
 
   updateMarkers = () => {
-    // reset all markers back to visible so that we start with 20 before filtering
+    // reset all markers back to visible so that we start with all of them before filtering
     this.state.markers.forEach(marker => {
       marker.setVisible(true);
     });
