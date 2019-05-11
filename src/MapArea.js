@@ -24,7 +24,7 @@ class MapArea extends React.Component {
           }}
           onClick={this.props.handleMenuClick}
         >
-          List View
+          View List
         </button>
         <p id="offline-message" className={this.props.onlineGoogle ? "hidden" : null}>
           Sorry, we had trouble connecting to Google Maps. Please check your internet

@@ -26,7 +26,7 @@ class Info extends React.Component {
             onClick={this.props.handleMenuClick}
             aria-label="Close sidebar"
           >
-          Close
+          View Map
         </button>
           <p>
             This app displays hiking trails around Carrboro, NC. Trail info is

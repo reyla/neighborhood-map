@@ -186,7 +186,7 @@ class App extends Component {
       }
     });
     // force close the sidebar
-    // this.handleMenuClick();
+    this.handleMenuClick();
   };
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
