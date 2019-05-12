@@ -19,7 +19,7 @@ class Info extends React.Component {
         aria-hidden="false"
       >
         <div id="content">
-          <h1>Carrboro Hiking Trails Map</h1>
+          <h1>Carrboro Hiking Trails</h1>
           <i className="fas fa-hiking icon"></i>
           <button
             id="backButton"
@@ -53,7 +53,7 @@ class Info extends React.Component {
             <option value="5">Max 5 miles</option>
             <option value="8">Max 8 miles</option>
           </select>
-          <p id="results-full-text">Showing <span id="results-number">{this.props.trails.length}</span> results</p>
+          <p id="results-full-text">Showing <span id="results-number">{this.props.trails.length}</span> results:</p>
           <p id="offline-message-sidebar" className={this.props.onlineREI ? "hidden" : null}>
             Live data is not currently available. This trail data may be outdated.
           </p>
