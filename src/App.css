@@ -8,6 +8,7 @@ body {
   padding: 0;
   font-size: 16px;
   text-align: center;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
 h1 {
@@ -67,8 +68,18 @@ a:focus {
   padding: 0 40px 20px;
 }
 
+.icon {
+  font-size: 24px;
+}
+
 #filter-label {
   padding-top: 20px;
+}
+
+select {
+  line-height: 1.5em;
+  padding: 8px;
+  font-family: "Roboto", sans-serif;
 }
 
 #results-full-text {
@@ -86,7 +97,6 @@ a:focus {
 }
 
 #trail-list-dynamic li {
-  font-family: Arial, sans-serif;
   margin: 15px 0;
   padding: 0 0 30px;
   text-align: center;
@@ -147,7 +157,6 @@ a:focus {
   padding: .5em;
   background: #55efc4;
   color: #0c2448;
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
   border: none;
@@ -172,7 +181,6 @@ a:focus {
   padding: .5em;
   color: #0c2448;
   background: #55efc4;
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
   border: none;
@@ -198,7 +206,6 @@ a:focus {
   right: 0;
   padding: 0.5em;
   width: 50%;
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
   background: #e17055;
@@ -206,7 +213,6 @@ a:focus {
 
 #offline-message-sidebar {
   padding: 0.5em;
-  font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 400;
   background: #e17055;

@@ -20,6 +20,7 @@ class Info extends React.Component {
       >
         <div id="content">
           <h1>Carrboro Hiking Trails Map</h1>
+          <i className="fas fa-hiking icon"></i>
           <button
             id="backButton"
             type="button"

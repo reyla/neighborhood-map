@@ -1,5 +1,6 @@
 /* TODOs: 
- * 
+ * 1) allow user to get directions to a trail
+ * 2) allow user to input a starting location
  */
 
 
