@@ -119,6 +119,8 @@ class App extends Component {
         infowindow.setContent(content);
         // set position of infowindow
         infowindow.setPosition(marker.position);
+        // force close the sidebar
+        this.handleMenuClick();
         // center the selected marker on the map
         map.panTo(marker.position);
         // open infowindow
