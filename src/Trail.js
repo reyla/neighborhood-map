@@ -26,7 +26,7 @@ class Trail extends React.Component {
         </div>
         <a
             href={this.props.trail.url}
-            className={this.props.onlineREI ? null : 'hidden'}
+            className={`learn-more ${this.props.onlineREI ? '' : 'hidden'}`}
             target="_blank" rel="noopener noreferrer" 
           >
             Learn more at HikingProject.com <i className="fas fa-external-link-square-alt"></i>

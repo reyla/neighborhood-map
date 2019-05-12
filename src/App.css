@@ -134,6 +134,10 @@ a:focus {
   margin-top: 0;
 }
 
+.learn-more {
+  font-size: 14px;
+}
+
 /* Close button */
 #backButton {
   position: absolute;

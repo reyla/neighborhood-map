@@ -1,7 +1,4 @@
 /* TODOs: 
- * 1) in checkDifficulty function, use image instead of text. 
- * I tried return `<img src="${blue}"/>`; but didn't work.
- * 2) if trail has no image, use a default image
  * 
  */
 
