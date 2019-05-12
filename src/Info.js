@@ -63,6 +63,7 @@ class Info extends React.Component {
                   trail={trail}
                   onClick={this.props.onListClick}
                   checkDifficulty={this.props.checkDifficulty}
+                  checkTrailImage={this.props.checkTrailImage}
                   onlineREI={this.props.onlineREI}
                 />
               </li>

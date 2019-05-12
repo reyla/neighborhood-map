@@ -10,7 +10,7 @@ class Trail extends React.Component {
         }}
       >
         <div className="trail-img">
-          <img src={this.props.trail.imgSmall} alt={this.props.trail.name} title={this.props.trail.name}/>
+          <img src={this.props.checkTrailImage(this.props.trail)} alt={this.props.trail.name} title={this.props.trail.name}/>
         </div>
         <div className="trail-details">
           <h3 title={this.props.trail.name} tabIndex="0">
@@ -27,7 +27,7 @@ class Trail extends React.Component {
         <a
             href={this.props.trail.url}
             className={this.props.onlineREI ? null : 'hidden'}
-            target="_blank"
+            target="_blank" rel="noopener noreferrer" 
           >
             Learn more at HikingProject.com <i className="fas fa-external-link-square-alt"></i>
           </a>

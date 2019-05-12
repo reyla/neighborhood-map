@@ -2,7 +2,7 @@
  * 1) in checkDifficulty function, use image instead of text. 
  * I tried return `<img src="${blue}"/>`; but didn't work.
  * 2) if trail has no image, use a default image
- * 3) ability to sort trails by length or name?
+ * 
  */
 
 
@@ -10,6 +10,7 @@ import React, { Component } from "react";
 import MapArea from "./MapArea";
 import Info from "./Info";
 import origTrails from "./OrigTrails";
+import imgDefault from "./img/default-image.png";
 import "./App.css";
 import axios from "axios";
 
@@ -134,9 +135,20 @@ class App extends Component {
     this.setState({ markers: markersArray });
   };
 
+  /* check to see if trail has an image */
+  checkTrailImage = (trail) => {
+    if (trail.imgSmall) {
+      return trail.imgSmall;
+    } else {
+      return imgDefault;
+    };
+  };
+
   /* create infowindow content for map view when marker is clicked */
   buildInfowindowContent(marker) {
-    let image = marker.imgSmall;
+    // checks for trail image or uses default
+    let image = this.checkTrailImage(marker);
+    // pulls trail difficulty and converts for readability
     let difficulty = this.checkDifficulty(marker);
     return (
       '<div id="popup">' +
@@ -254,7 +266,7 @@ class App extends Component {
           trails={this.state.currentTrails.filter(trail => {
             return trail.length <= this.state.maxLength;
           })}
-          markers={this.state.markers}
+          markers={this.state.markers}          
           maxLength={this.state.maxLength}
           onlineREI={this.state.onlineREI}
           isSidebarOpen={this.state.isSidebarOpen}
@@ -262,6 +274,7 @@ class App extends Component {
           updateMarkers={this.updateMarkers.bind(this)}
           onListClick={this.listClick.bind(this)}
           checkDifficulty={this.checkDifficulty.bind(this)}
+          checkTrailImage={this.checkTrailImage.bind(this)}
           handleMenuClick={this.handleMenuClick.bind(this)}
         />
 
