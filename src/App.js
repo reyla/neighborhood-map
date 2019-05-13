@@ -113,7 +113,7 @@ class App extends Component {
       // extend the map boundaries
       bounds.extend(marker.position);
       // click on marker to see location info
-      marker.addListener("click", function() {
+      marker.addListener("click", () => {
         // change the content of infowindow
         infowindow.setContent(content);
         // set position of infowindow
