@@ -118,8 +118,8 @@ class App extends Component {
         infowindow.setContent(content);
         // set position of infowindow
         infowindow.setPosition(marker.position);
-        // force close the sidebar
-        this.handleMenuClick();
+        // force close the sidebar if it is open
+        this.sidebarClose();
         // center the selected marker on the map
         map.panTo(marker.position);
         // open infowindow
@@ -169,17 +169,23 @@ class App extends Component {
     );
   }
 
-  /* function that controls the sidebar opening */
-  handleMenuClick() {
-    this.setState({ isSidebarOpen: !this.state.isSidebarOpen });
+  /* function that controls the sidebar closing */
+  sidebarClose() {
+    this.setState({ isSidebarOpen: false });
     // control aria attributes
     let sidebar = document.querySelector("#sidebar");
-    sidebar.getAttribute("aria-hidden") === "true"
-      ? sidebar.setAttribute("aria-hidden", "false")
-      : sidebar.setAttribute("aria-hidden", "true");
-    sidebar.getAttribute("aria-expanded") === "false"
-      ? sidebar.setAttribute("aria-expanded", "true")
-      : sidebar.setAttribute("aria-expanded", "false");
+    sidebar.setAttribute("aria-hidden", "true");
+    sidebar.setAttribute("aria-expanded", "false");
+  }
+
+  /* function that controls the sidebar opening */
+  sidebarOpen() {
+    this.setState({ isSidebarOpen: true });
+    // control aria attributes
+    let sidebar = document.querySelector("#sidebar");
+    sidebar.setAttribute("aria-hidden", "false");
+    sidebar.setAttribute("aria-expanded", "true");
+    
   }
 
   /* when user clicks on list item in sidebar, it opens infowindow */
@@ -203,7 +209,7 @@ class App extends Component {
       }
     });
     // force close the sidebar
-    this.handleMenuClick();
+    this.sidebarClose();
   };
 
   /* change maxLength when user selects different maximum trail length in sidebar filter*/
@@ -273,13 +279,13 @@ class App extends Component {
           onListClick={this.listClick.bind(this)}
           checkDifficulty={this.checkDifficulty.bind(this)}
           checkTrailImage={this.checkTrailImage.bind(this)}
-          handleMenuClick={this.handleMenuClick.bind(this)}
+          sidebarClose={this.sidebarClose.bind(this)}
         />
 
         <MapArea
           onlineGoogle={this.state.onlineGoogle}
           isSidebarOpen={this.state.isSidebarOpen}
-          handleMenuClick={this.handleMenuClick.bind(this)}
+          sidebarOpen={this.sidebarOpen.bind(this)}
         />
       </main>
     );

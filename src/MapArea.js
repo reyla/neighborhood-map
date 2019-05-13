@@ -22,7 +22,7 @@ class MapArea extends React.Component {
           style={{
             visibility: this.props.isSidebarOpen ? "hidden" : "visible"
           }}
-          onClick={this.props.handleMenuClick}
+          onClick={this.props.sidebarOpen}
         >
           View List
         </button>

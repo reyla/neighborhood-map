@@ -24,7 +24,7 @@ class Info extends React.Component {
           <button
             id="backButton"
             type="button"
-            onClick={this.props.handleMenuClick}
+            onClick={this.props.sidebarClose}
             aria-label="Close sidebar"
           >
           View Map
